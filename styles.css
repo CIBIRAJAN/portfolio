@@ -1994,6 +1994,13 @@ body.hero-active .nav-logo {
         transform: scale(0.98); /* Tactile feedback */
     }
 
+    /* Final Vertical Pruning for Button Clearance */
+    .persona-identity .persona-img {
+        height: 35vh !important;
+        width: auto !important;
+        object-fit: contain !important;
+    }
+
     .hero-main-cta {
         margin-top: 85px; /* Bring down top content for better breathing room */
         margin-bottom: 25px;
