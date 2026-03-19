@@ -1928,16 +1928,17 @@ body.hero-active .nav-logo {
     }
 
     .hero-visual-container {
-        height: 42vh !important;
+        height: auto !important;
         /* Absolute grounding to sit perfectly below CTA */
         overflow: visible;
-        bottom: 0px;
+        bottom: 0px !important;
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
         margin: 0 auto !important;
         transform: none !important;
         pointer-events: none;
+        z-index: 10;
     }
 
     .persona-showcase {
@@ -1964,10 +1965,11 @@ body.hero-active .nav-logo {
         display: flex !important;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-end; /* Pin to bottom */
         position: relative !important; 
-        bottom: -30px !important; /* Deep grounding to pass under button */
+        bottom: -20px !important; /* Ground pass under button */
         left: 0 !important;
-        transform: scale(1.0) !important; /* Removed scale to prevent upward drift */
+        transform: none !important; /* Pure unscaled footprint */
         width: 100% !important;
         margin: 0 auto !important; 
         opacity: 1 !important;
@@ -1995,10 +1997,13 @@ body.hero-active .nav-logo {
     }
 
     /* Final Vertical Pruning for Button Clearance */
-    .persona-identity .persona-img {
-        height: 35vh !important;
+    .persona-identity .persona-img, .mobile-hero-visual .persona-img {
+        height: 30vh !important;
+        max-height: 250px !important; /* Explicit absolute cap */
         width: auto !important;
         object-fit: contain !important;
+        display: block;
+        margin-top: auto;
     }
 
     .hero-main-cta {
