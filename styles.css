@@ -1899,11 +1899,18 @@ body.hero-active .nav-logo {
 /* homw page image propertiesreduce  */
 
 @media (max-width: 480px) {
+    * {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+
     .hero-visual-container {
         height: 70vh;
         /* Restored for impact */
         overflow: visible;
         bottom: 0px;
+        left: 0 !important;
+        transform: none !important;
+        width: 100vw !important;
     }
 
     .persona-showcase {
@@ -1911,10 +1918,11 @@ body.hero-active .nav-logo {
         justify-content: center !important;
         align-items: flex-end !important;
         position: relative;
-        width: 100vw;
+        width: 100% !important;
         height: 100%;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0 !important;
+        transform: none !important;
+        margin: 0 !important;
         overflow: visible;
         pointer-events: none;
     }
