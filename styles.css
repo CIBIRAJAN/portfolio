@@ -1923,13 +1923,13 @@ body.hero-active .nav-logo {
     }
 
     .persona-identity .persona-img, .mobile-hero-visual .persona-img {
-        height: 100% !important; /* Dynamically stretch to fill container */
-        max-height: none !important; /* Uncap */
-        width: auto !important;
-        object-fit: contain !important;
+        height: 55vh !important; /* Strict vertical containment */
+        max-height: 55vh !important; 
+        width: 100vw !important; /* Strict horizontal containment */
+        max-width: 100vw !important;
+        object-fit: contain !important; /* Force complete visibility within bounds */
         display: block;
-        margin-top: auto;
-        margin-bottom: 0;
+        margin: 0 auto;
     }
 }
 
@@ -2011,12 +2011,13 @@ body.hero-active .nav-logo {
 
     /* Final Vertical Pruning for Button Clearance */
     .persona-identity .persona-img, .mobile-hero-visual .persona-img {
-        height: 100% !important; /* Naturally fill exact remaining space */
-        max-height: none !important; 
-        width: auto !important;
-        object-fit: contain !important;
+        height: 55vh !important; /* Strict vertical containment */
+        max-height: 55vh !important; 
+        width: 100vw !important; /* Strict horizontal containment */
+        max-width: 100vw !important;
+        object-fit: contain !important; /* Force complete visibility within bounds */
         display: block;
-        margin-top: auto;
+        margin: 0 auto;
     }
 
     .hero-main-cta {
