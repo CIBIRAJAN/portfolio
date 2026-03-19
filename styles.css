@@ -1907,12 +1907,16 @@ body.hero-active .nav-logo {
     }
 
     .persona-showcase {
-        display: block !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-end !important;
         position: relative;
         width: 100vw;
         height: 100%;
         left: 50%;
         transform: translateX(-50%);
+        overflow: visible;
+        pointer-events: none;
     }
 
     .persona-zone {
@@ -1929,10 +1933,12 @@ body.hero-active .nav-logo {
         transform: translateX(-50%) scale(1.15) !important;
         /* Balanced scale for presence and clearance */
         width: 100%;
+        margin: 0 !important; /* Reset inherited margins that cause shifting */
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important; /* Unlocked for interaction */
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent; /* Remove the blue flash */
     }
 
     .mobile-hero-link {
@@ -1942,6 +1948,7 @@ body.hero-active .nav-logo {
         cursor: pointer;
         pointer-events: auto !important;
         transition: transform 0.3s ease;
+        -webkit-tap-highlight-color: transparent; /* Remove the blue flash */
     }
 
     .mobile-hero-link:active {
