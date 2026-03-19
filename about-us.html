@@ -277,7 +277,7 @@
         .resume-viewer-container {
             width: 100%;
             max-width: 1200px;
-            height: 900px;
+            height: 100%;
             margin: 0 auto;
             background: #ffffff;
             border-radius: var(--radius-large);
@@ -394,7 +394,8 @@
             }
 
             .desktop-viewer {
-                display: none !important; /* Force kill iframe from mobile DOM */
+                display: none !important;
+                /* Force kill iframe from mobile DOM */
             }
 
             .mobile-resume-cta {
@@ -404,28 +405,30 @@
                 justify-content: center;
                 padding: 40px 0;
                 width: 100%;
-                background: var(--bg-cream); /* Match page background */
+                background: var(--bg-cream);
+                /* Match page background */
             }
 
             .identity-resume-card {
-                background: #0d1b0d; /* Elite Dark Background */
+                background: #0d1b0d;
+                /* Elite Dark Background */
                 width: 90%;
                 max-width: 400px;
                 padding: 60px 32px;
                 border-radius: 48px;
-                box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+                box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                border: 1px solid rgba(255,255,255,0.05);
+                border: 1px solid rgba(255, 255, 255, 0.05);
                 box-sizing: border-box;
             }
 
             .resume-hero-icon {
                 font-size: 4rem;
                 margin-bottom: 24px;
-                filter: drop-shadow(0 10px 20px rgba(255,255,255,0.1));
+                filter: drop-shadow(0 10px 20px rgba(255, 255, 255, 0.1));
             }
 
             .identity-resume-title {
@@ -439,7 +442,7 @@
 
             .identity-resume-desc {
                 font-family: var(--font-body);
-                color: rgba(255,255,255,0.6);
+                color: rgba(255, 255, 255, 0.6);
                 font-size: 1rem;
                 line-height: 1.6;
                 margin-bottom: 40px;
@@ -609,13 +612,18 @@
                     <div class="identity-resume-card">
                         <div class="resume-hero-icon">📄</div>
                         <h2 class="identity-resume-title">View Full Credentials</h2>
-                        <p class="identity-resume-desc">Comprehensive technical overview, complete project milestones, and professional endorsements.</p>
-                        
-                        <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf" 
-                           target="_blank" 
-                           class="btn-resume-mobile">
-                           <span>VIEW RESUME</span>
-                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        <p class="identity-resume-desc">Comprehensive technical overview, complete project milestones,
+                            and professional endorsements.</p>
+
+                        <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
+                            target="_blank" class="btn-resume-mobile">
+                            <span>VIEW RESUME</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
                         </a>
                     </div>
                 </div>
