@@ -382,24 +382,68 @@
                 display: none !important;
             }
 
-            .resume-viewer-container {
-                height: auto !important;
-                min-height: 400px;
-                padding: 60px 20px;
-                background: rgba(13, 27, 13, 0.03);
-                border: 2px dashed rgba(13, 27, 13, 0.1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .desktop-viewer {
+                display: none !important; /* Force kill iframe from mobile DOM */
             }
 
-            .resume-fallback-content {
-                position: relative !important;
-                top: 0 !important;
-                left: 0 !important;
-                transform: none !important;
-                display: block !important;
+            .mobile-resume-cta {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                width: 100%;
+                padding: 40px 20px;
+                animation: fadeInUp 0.8s ease backwards;
             }
+
+            .mobile-cta-box {
+                background: white;
+                padding: 40px 30px;
+                border-radius: 40px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .resume-icon {
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+
+            .mobile-cta-title {
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                color: #0d1b0d;
+            }
+
+            .mobile-cta-text {
+                color: #666;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+        }
+
+        /* Desktop Positioning */
+        .desktop-viewer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+
+        .mobile-resume-cta {
+            display: none;
+        }
+
+        .resume-viewer-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 30px;
         }
     </style>
     <script src="components.js" defer></script>
@@ -509,22 +553,22 @@
             </div>
 
             <div class="resume-viewer-container">
-                <!-- Supabase Cloud Viewer -->
-                <iframe
-                    src="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
-                    class="resume-viewer-iframe" style="position: absolute; top: 0; left: 0; z-index: 5;"></iframe>
+                <!-- Desktop Only: Native Embed -->
+                <div class="desktop-viewer">
+                    <iframe
+                        src="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
+                        class="resume-viewer-iframe"></iframe>
+                </div>
 
-                <!-- Persistent Fallback UI (Visible if blocked or loading) -->
-                <div class="resume-fallback-content">
-                    <span style="font-size: 4rem; margin-bottom: 20px; display: block;">📜</span>
-                    <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 15px;">Document
-                        Preview Blocked?</h3>
-                    <p
-                        style="color: var(--text-muted); margin-bottom: 30px; max-width: 400px; margin-left: auto; margin-right: auto;">
-                        Some browsers restrict embedded cloud PDFs. For the best experience, view the document directly.
-                    </p>
-                    <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
-                        target="_blank" class="nav-btn-pill active" style="padding: 15px 30px;">OPEN IN NEW TAB</a>
+                <!-- Mobile Only: Premium CTA -->
+                <div class="mobile-resume-cta">
+                    <div class="mobile-cta-box">
+                        <div class="resume-icon">📄</div>
+                        <h3 class="mobile-cta-title">Official Resume</h3>
+                        <p class="mobile-cta-text">Optimized for mobile viewing. Open to read full technical credentials.</p>
+                        <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
+                            target="_blank" class="nav-btn-pill active" style="padding: 18px 40px; font-size: 1.1rem; width: 100%; text-align: center;">VIEW DOCUMENT</a>
+                    </div>
                 </div>
             </div>
         </section>
