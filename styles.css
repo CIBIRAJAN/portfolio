@@ -1846,6 +1846,14 @@ body.hero-active .nav-logo {
         right: 10px;
     }
 
+    /* Disable Hover Overlays on Tablets/Mobile */
+    .persona-overlay {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
     /* Progressive Framing Fix: Single Screen Lockdown */
     .hero-visual-container {
         width: 100vw;
