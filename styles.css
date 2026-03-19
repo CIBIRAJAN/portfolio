@@ -2028,16 +2028,16 @@ body.hero-active .nav-logo {
     .persona-identity .persona-img,
     .mobile-hero-visual .persona-img {
         height: auto !important;
-        max-height: 70vh !important;
+        max-height: 80vh !important;
         /* Increased for taller persona presentation */
-        width: 100% !important;
-        /* Pure width tracking for centered fit */
-        max-width: 100vw !important;
+        width: 108vw !important;
+        /* Slightly wider than viewport to let image grow */
+        max-width: 108vw !important;
         object-fit: contain !important;
         object-position: bottom center !important;
         /* Ensure centered at bottom */
         display: block;
-        margin: 0 auto;
+        margin: 0 0 0 -4vw !important; /* Center the oversized width */
         pointer-events: none !important;
         /* Disables long-press native Safari selection/distortion */
     }
