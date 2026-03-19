@@ -399,29 +399,36 @@
 
             .mobile-cta-box {
                 background: white;
-                padding: 40px 30px;
+                padding: 60px 40px; /* More breathing room */
                 border-radius: 40px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-                width: 100%;
-                max-width: 400px;
+                box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+                width: 90% !important; /* Center with margins */
+                max-width: 380px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-sizing: border-box;
             }
 
             .resume-icon {
-                font-size: 3rem;
-                margin-bottom: 20px;
+                font-size: 3.5rem;
+                margin-bottom: 24px;
             }
 
             .mobile-cta-title {
                 font-family: var(--font-display);
                 font-size: 1.8rem;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
                 color: #0d1b0d;
+                font-weight: 850;
             }
 
             .mobile-cta-text {
                 color: #666;
-                margin-bottom: 30px;
-                line-height: 1.6;
+                margin-bottom: 35px;
+                line-height: 1.5;
+                font-size: 1rem;
+                max-width: 250px; /* Prevent text blowout */
             }
         }
 
@@ -567,7 +574,7 @@
                         <h3 class="mobile-cta-title">Official Resume</h3>
                         <p class="mobile-cta-text">Optimized for mobile viewing. Open to read full technical credentials.</p>
                         <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
-                            target="_blank" class="nav-btn-pill active" style="padding: 18px 40px; font-size: 1.1rem; width: 100%; text-align: center;">VIEW DOCUMENT</a>
+                            target="_blank" class="nav-btn-pill active" style="padding: 18px 45px; font-size: 1.1rem; display: inline-flex; justify-content: center; align-items: center; white-space: nowrap;">VIEW DOCUMENT</a>
                     </div>
                 </div>
             </div>
