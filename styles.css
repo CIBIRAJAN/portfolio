@@ -1867,8 +1867,7 @@ body.hero-active .nav-logo {
         right: 0 !important;
         transform: none !important;
         bottom: 0px;
-        height: 55vh;
-        /* Dialed height for optimal viewing */
+        height: 52vh !important; /* Calibrated to clear the headline and button */
         overflow: visible;
         pointer-events: none;
     }
@@ -1930,8 +1929,8 @@ body.hero-active .nav-logo {
     }
 
     .hero-visual-container {
-        height: 70vh;
-        /* Restored for impact */
+        height: 52vh !important;
+        /* Balanced height to sit perfectly below CTA */
         overflow: visible;
         bottom: 0px;
         left: 0 !important;
