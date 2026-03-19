@@ -1917,7 +1917,7 @@ body.hero-active .nav-logo {
         display: flex !important;
         justify-content: center !important;
         align-items: flex-end !important;
-        position: relative;
+        position: relative !important;
         width: 100% !important;
         height: 100%;
         left: 0 !important;
@@ -1933,20 +1933,23 @@ body.hero-active .nav-logo {
     }
 
     .persona-identity {
-        display: block !important;
-        position: absolute;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        position: relative !important; /* Switch to relative-flex for perfect centering */
         bottom: -5px;
-        /* Firmly anchored */
-        left: 50%;
-        transform: translateX(-50%) scale(1.15) !important;
-        /* Balanced scale for presence and clearance */
-        width: 100%;
-        margin: 0 !important; /* Reset inherited margins that cause shifting */
+        left: 0 !important;
+        transform: scale(1.15) !important;
+        width: 100% !important;
+        margin: 0 auto !important; 
         opacity: 1 !important;
         visibility: visible !important;
-        pointer-events: auto !important; /* Unlocked for interaction */
+        pointer-events: auto !important;
         cursor: pointer;
-        -webkit-tap-highlight-color: transparent; /* Remove the blue flash */
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none; /* Disable long-press popup */
+        -webkit-user-select: none;
+        user-select: none;
     }
 
     .mobile-hero-link {
