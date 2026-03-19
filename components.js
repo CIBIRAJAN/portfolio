@@ -40,7 +40,7 @@ class GlobalFooter extends HTMLElement {
     <section class="section section-launch" id="contact">
         <div class="launch-container">
             <div class="launch-visual">
-                <img src="assets/images/launch-premium.png" alt="Let's launch together" class="launch-img">
+                <img src="assets/images/launch-premium.webp" alt="Let's launch together" class="launch-img">
             </div>
             <div class="launch-content">
                 <h2 class="launch-title">Let’s launch together!</h2>

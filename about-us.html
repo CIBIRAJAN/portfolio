@@ -102,13 +102,14 @@
             font-weight: 850;
             font-size: 1.2rem;
             color: #0d1b0d;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
             opacity: 0;
             transform: translateY(20px) scale(0.8);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 50;
             white-space: nowrap;
-            pointer-events: auto; /* Enable interaction */
+            pointer-events: auto;
+            /* Enable interaction */
             cursor: pointer;
         }
 
@@ -158,8 +159,14 @@
         }
 
         @media (max-width: 1200px) {
-            .hire-cloud { right: 0; top: -10px; }
-            .hire-arrow { display: none; }
+            .hire-cloud {
+                right: 0;
+                top: -10px;
+            }
+
+            .hire-arrow {
+                display: none;
+            }
         }
 
         /* Stats Grid Architected */
@@ -311,11 +318,13 @@
                 gap: 40px;
                 text-align: center;
             }
+
             .id-content {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
+
             .id-bio {
                 margin-left: auto;
                 margin-right: auto;
@@ -332,24 +341,26 @@
             .id-stats-grid {
                 grid-template-columns: 1fr;
             }
+
             .id-timeline-item {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-            
+
             /* Responsive Interaction Assets: Force Stay On Mobile */
             .id-main-img {
                 max-width: 90%;
                 margin-top: 40px;
             }
-            
-            .hire-cloud, .hire-arrow {
+
+            .hire-cloud,
+            .hire-arrow {
                 opacity: 1 !important;
                 visibility: visible !important;
                 display: block !important;
                 z-index: 100 !important;
             }
-            
+
             .hire-cloud {
                 top: 0px !important;
                 right: 20px !important;
@@ -357,15 +368,16 @@
                 font-size: 1rem;
                 padding: 10px 22px;
             }
-            
+
             .hire-arrow {
-                top: 50px !important; /* Position below cloud */
+                top: 50px !important;
+                /* Position below cloud */
                 right: 35px !important;
                 width: 70px !important;
                 height: 90px !important;
                 transform: scale(0.8) rotate(-5deg) !important;
             }
-            
+
             .resume-viewer-container {
                 height: 500px;
             }
@@ -376,7 +388,7 @@
 
 <body class="id-page-active">
     <global-nav></global-nav>
-    
+
     <main>
         <!-- Identity Hero -->
         <section class="id-hero">
@@ -398,15 +410,18 @@
             </div>
             <div class="id-visual">
                 <a href="#resume-section" style="text-decoration: none;">
-                    <img src="assets/center.png" alt="Cibirajan Visvanathan" class="id-main-img" style="cursor: pointer;">
+                    <img src="assets/center.webp" alt="Cibirajan Visvanathan" class="id-main-img"
+                        style="cursor: pointer;">
                 </a>
-                
+
                 <!-- Interaction Artifacts -->
                 <div class="hire-cloud fade-in-up" onclick="window.location.href='#resume-section'">Hire me 👋</div>
                 <div class="hire-arrow fade-in-up green-arrow">
                     <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M70 10 C70 80 50 110 10 110" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-                        <path d="M22 100L10 110L22 120" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M70 10 C70 80 50 110 10 110" stroke="currentColor" stroke-width="5"
+                            stroke-linecap="round" />
+                        <path d="M22 100L10 110L22 120" stroke="currentColor" stroke-width="5" stroke-linecap="round"
+                            stroke-linejoin="round" />
                     </svg>
                 </div>
             </div>
