@@ -271,7 +271,8 @@ body.hero-active .nav-logo {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    z-index: 100 !important; /* Fail-safe Z-layer isolation */
+    z-index: 100 !important;
+    /* Fail-safe Z-layer isolation */
     position: relative !important;
     margin-top: 40px;
     margin-bottom: auto;
@@ -1856,7 +1857,8 @@ body.hero-active .nav-logo {
 
     * {
         -webkit-tap-highlight-color: transparent !important;
-        -webkit-touch-callout: none !important; /* Global Kill for long-press popups on mobile */
+        -webkit-touch-callout: none !important;
+        /* Global Kill for long-press popups on mobile */
     }
 
     .hero-visual-container {
@@ -1867,7 +1869,8 @@ body.hero-active .nav-logo {
         right: 0 !important;
         transform: none !important;
         bottom: 0px !important;
-        height: 55vh !important; /* Lock to bottom 55% of screen */
+        height: 55vh !important;
+        /* Lock to bottom 55% of screen */
         overflow: visible;
         pointer-events: none;
         z-index: 10;
@@ -1898,12 +1901,13 @@ body.hero-active .nav-logo {
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        position: relative !important; 
-        bottom: 0px !important; /* Rest on baseline */
+        position: relative !important;
+        bottom: 0px !important;
+        /* Rest on baseline */
         left: 0 !important;
         transform: scale(1.0) !important;
         width: 100% !important;
-        margin: 0 auto !important; 
+        margin: 0 auto !important;
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
@@ -1919,15 +1923,20 @@ body.hero-active .nav-logo {
     }
 
     .hero-main-cta {
-        margin-bottom: 0px !important; /* Let flex handle the spacing below */
+        margin-bottom: 0px !important;
+        /* Let flex handle the spacing below */
     }
 
-    .persona-identity .persona-img, .mobile-hero-visual .persona-img {
-        height: 55vh !important; /* Strict vertical containment */
-        max-height: 55vh !important; 
-        width: 100vw !important; /* Strict horizontal containment */
+    .persona-identity .persona-img,
+    .mobile-hero-visual .persona-img {
+        height: 55vh !important;
+        /* Strict vertical containment */
+        max-height: 55vh !important;
+        width: 100vw !important;
+        /* Strict horizontal containment */
         max-width: 100vw !important;
-        object-fit: contain !important; /* Force complete visibility within bounds */
+        object-fit: contain !important;
+        /* Force complete visibility within bounds */
         display: block;
         margin: 0 auto;
     }
@@ -1942,7 +1951,8 @@ body.hero-active .nav-logo {
 
     .hero-visual-container {
         position: absolute !important;
-        height: 70vh !important; /* Increased to allow a significantly taller image */
+        height: 100vh !important;
+        /* Increased to allow a significantly taller image */
         overflow: visible;
         bottom: 0px !important;
         left: 0 !important;
@@ -1978,13 +1988,16 @@ body.hero-active .nav-logo {
         display: flex !important;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-end; /* Pin to bottom */
-        position: relative !important; 
-        bottom: 0px !important; /* Rest on baseline */
+        justify-content: flex-end;
+        /* Pin to bottom */
+        position: relative !important;
+        bottom: 0px !important;
+        /* Rest on baseline */
         left: 0 !important;
-        transform: none !important; /* Pure unscaled footprint */
+        transform: none !important;
+        /* Pure unscaled footprint */
         width: 100% !important;
-        margin: 0 auto !important; 
+        margin: 0 auto !important;
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
@@ -2002,28 +2015,36 @@ body.hero-active .nav-logo {
         cursor: pointer;
         pointer-events: auto !important;
         transition: transform 0.3s ease;
-        -webkit-tap-highlight-color: transparent; /* Remove the blue flash */
+        -webkit-tap-highlight-color: transparent;
+        /* Remove the blue flash */
     }
 
     .mobile-hero-link:active {
-        transform: scale(0.98); /* Tactile feedback */
+        transform: scale(0.98);
+        /* Tactile feedback */
     }
 
     /* Final Vertical Pruning for Button Clearance */
-    .persona-identity .persona-img, .mobile-hero-visual .persona-img {
-        height: auto !important; 
-        max-height: 70vh !important; /* Increased for taller persona presentation */
-        width: 100% !important; /* Pure width tracking for centered fit */
+    .persona-identity .persona-img,
+    .mobile-hero-visual .persona-img {
+        height: auto !important;
+        max-height: 70vh !important;
+        /* Increased for taller persona presentation */
+        width: 100% !important;
+        /* Pure width tracking for centered fit */
         max-width: 100vw !important;
         object-fit: contain !important;
-        object-position: bottom center !important; /* Ensure centered at bottom */
+        object-position: bottom center !important;
+        /* Ensure centered at bottom */
         display: block;
         margin: 0 auto;
-        pointer-events: none !important; /* Disables long-press native Safari selection/distortion */
+        pointer-events: none !important;
+        /* Disables long-press native Safari selection/distortion */
     }
 
     .hero-main-cta {
-        margin-top: 60px; /* Shifted up slightly to guarantee breathing room for 50vh image */
+        margin-top: 60px;
+        /* Shifted up slightly to guarantee breathing room for 50vh image */
         margin-bottom: 0px !important;
     }
 
@@ -2031,7 +2052,8 @@ body.hero-active .nav-logo {
     .marquee-ticker {
         overflow: visible !important;
         position: relative;
-        height: 500px; /* Fixed height for the stack space */
+        height: 500px;
+        /* Fixed height for the stack space */
         width: 100%;
         display: flex;
         justify-content: center;
@@ -2057,22 +2079,43 @@ body.hero-active .nav-logo {
         margin: 0 !important;
         padding: 30px !important;
         background: #000;
-        border: 2px solid rgba(255,255,255,0.1);
+        border: 2px solid rgba(255, 255, 255, 0.1);
         border-radius: 30px !important;
         display: flex !important;
         flex-direction: column;
         justify-content: space-between;
         transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67), opacity 0.3s ease;
         cursor: grab;
-        touch-action: none; /* Critical for custom swipe logic */
+        touch-action: none;
+        /* Critical for custom swipe logic */
         user-select: none;
     }
 
     /* Stack Depth Visuals */
-    .customer-card:nth-last-child(1) { z-index: 100; transform: translateZ(0); opacity: 1; }
-    .customer-card:nth-last-child(2) { z-index: 90; transform: translateZ(-30px) translateY(15px) scale(0.95); opacity: 0.8; }
-    .customer-card:nth-last-child(3) { z-index: 80; transform: translateZ(-60px) translateY(30px) scale(0.9); opacity: 0.6; }
-    .customer-card:nth-last-child(n+4) { z-index: 70; transform: translateZ(-90px) translateY(45px) scale(0.85); opacity: 0; visibility: hidden; }
+    .customer-card:nth-last-child(1) {
+        z-index: 100;
+        transform: translateZ(0);
+        opacity: 1;
+    }
+
+    .customer-card:nth-last-child(2) {
+        z-index: 90;
+        transform: translateZ(-30px) translateY(15px) scale(0.95);
+        opacity: 0.8;
+    }
+
+    .customer-card:nth-last-child(3) {
+        z-index: 80;
+        transform: translateZ(-60px) translateY(30px) scale(0.9);
+        opacity: 0.6;
+    }
+
+    .customer-card:nth-last-child(n+4) {
+        z-index: 70;
+        transform: translateZ(-90px) translateY(45px) scale(0.85);
+        opacity: 0;
+        visibility: hidden;
+    }
 
     /* Fly-off animations */
     .customer-card.swipe-left {
