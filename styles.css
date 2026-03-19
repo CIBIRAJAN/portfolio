@@ -2011,18 +2011,20 @@ body.hero-active .nav-logo {
 
     /* Final Vertical Pruning for Button Clearance */
     .persona-identity .persona-img, .mobile-hero-visual .persona-img {
-        height: 55vh !important; /* Strict vertical containment */
-        max-height: 55vh !important; 
-        width: 100vw !important; /* Strict horizontal containment */
+        height: auto !important; 
+        max-height: 50vh !important; /* Reduced to provide solid clearance below WORKS button */
+        width: 100% !important; /* Pure width tracking for centered fit */
         max-width: 100vw !important;
-        object-fit: contain !important; /* Force complete visibility within bounds */
+        object-fit: contain !important;
+        object-position: bottom center !important; /* Ensure centered at bottom */
         display: block;
         margin: 0 auto;
+        pointer-events: none !important; /* Disables long-press native Safari selection/distortion */
     }
 
     .hero-main-cta {
-        margin-top: 85px; /* Bring down top content for better breathing room */
-        margin-bottom: 0px !important; /* Let flex handle the bottom */
+        margin-top: 60px; /* Shifted up slightly to guarantee breathing room for 50vh image */
+        margin-bottom: 0px !important;
     }
 
     /* Tinder-Style Stack System for Customers */
