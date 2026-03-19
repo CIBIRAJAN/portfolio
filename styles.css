@@ -271,9 +271,9 @@ body.hero-active .nav-logo {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    z-index: 10;
+    z-index: 100 !important; /* Fail-safe Z-layer isolation */
+    position: relative !important;
     margin-top: 40px;
-    /* Aligned slightly lower than absolute top for comfort */
     margin-bottom: auto;
 }
 
@@ -1865,10 +1865,11 @@ body.hero-active .nav-logo {
         left: 0 !important;
         right: 0 !important;
         transform: none !important;
-        bottom: 0px;
-        height: 48vh !important; /* Calibrated to clear the headline and button */
+        bottom: 0px !important;
+        height: auto !important; /* Calibrated to clear the headline and button */
         overflow: visible;
         pointer-events: none;
+        z-index: 10;
     }
 
     .persona-showcase {
@@ -1895,10 +1896,11 @@ body.hero-active .nav-logo {
         display: flex !important;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-end;
         position: relative !important; /* Fixed center grounding */
-        bottom: -15px;
+        bottom: -20px !important;
         left: 0 !important;
-        transform: scale(1.15) !important;
+        transform: scale(1.0) !important;
         width: 100% !important;
         margin: 0 auto !important; 
         opacity: 1 !important;
@@ -1917,6 +1919,15 @@ body.hero-active .nav-logo {
 
     .hero-main-cta {
         margin-bottom: 25px;
+    }
+
+    .persona-identity .persona-img, .mobile-hero-visual .persona-img {
+        height: 35vh !important;
+        max-height: 280px !important; /* Explicit absolute cap */
+        width: auto !important;
+        object-fit: contain !important;
+        display: block;
+        margin-top: auto;
     }
 }
 
