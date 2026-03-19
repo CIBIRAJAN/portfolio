@@ -1951,7 +1951,7 @@ body.hero-active .nav-logo {
 
     .hero-visual-container {
         position: absolute !important;
-        height: 100vh !important;
+        height: 200vh !important;
         /* Increased to allow a significantly taller image */
         overflow: visible;
         bottom: 0px !important;
