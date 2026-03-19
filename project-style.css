@@ -1,0 +1,294 @@
+/* ============================================
+   PROJECT DETAIL STYLING — CINEMATIC EXTENSION
+   ============================================ */
+
+.project-page-active {
+    background-color: var(--bg-cream);
+    color: var(--text-primary);
+    padding-top: 15vh;
+    min-height: 100vh;
+}
+
+/* Floating Back Trigger */
+.project-back-pill {
+    position: fixed;
+    top: 100px;
+    left: 24px;
+    z-index: 999;
+    padding: 10px 24px;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+.project-back-pill:hover {
+    background: var(--bg-dark);
+    color: #ffffff;
+    transform: translateX(-5px);
+}
+
+/* Header Cinematic Architecture */
+.project-hero-modern {
+    max-width: 1160px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.project-label-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-lime);
+    color: var(--text-primary);
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.project-display-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+}
+
+.project-tech-pills {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.tech-pill-modern {
+    padding: 8px 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.02);
+}
+
+.project-main-showcase {
+    width: 100%;
+    max-width: 800px; /* Scaled down for a more contained, framed look */
+    margin: 0 auto;
+    border-radius: var(--radius-large);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+    background: #ffffff; /* Frame background */
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.project-showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.96); /* Slight internal padding for the framed look */
+    border-radius: var(--radius-medium);
+}
+
+.project-main-showcase:hover .project-showcase-img {
+    transform: scale(1.03);
+}
+
+/* Grid Layout Architecture */
+.project-grid {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 80px;
+}
+
+@media (max-width: 991px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
+
+/* Sidebar Styling */
+.project-sidebar-item {
+    margin-bottom: 48px;
+}
+
+.project-sidebar-item h4 {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-sidebar-item h4::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(0,0,0,0.05);
+}
+
+.project-sidebar-item p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Content Area Architecture */
+.project-content section {
+    margin-bottom: 80px;
+}
+
+.project-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 850;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.project-content p {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Refined Feature Artifacts Architecture */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 24px;
+}
+
+.feature-item {
+    padding: 32px 40px;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.03);
+    border-radius: var(--radius-medium);
+    margin-bottom: 24px;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    border-color: var(--accent-lime);
+}
+
+.feature-item strong {
+    font-family: var(--font-display);
+    font-size: 1.1rem; /* Slightly smaller than before for better balance */
+    font-weight: 850;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    display: block; /* Force new line for description */
+    margin-bottom: 6px;
+}
+
+.feature-item p, 
+.feature-item span {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Add an accent marker on hover for extra premium feel */
+.feature-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 4px;
+    height: 40px;
+    background: var(--accent-lime);
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.4s ease;
+}
+
+.feature-item:hover::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* ===== PROJECT PAGE MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    .project-display-title {
+        font-size: 2.5rem;
+    }
+    
+    .project-hero-modern {
+        margin-bottom: 40px;
+        padding: 0 16px;
+    }
+    
+    .project-grid {
+        gap: 40px;
+        padding: 0 16px 60px;
+    }
+    
+    .project-sidebar-item {
+        margin-bottom: 24px;
+    }
+    
+    .project-content section {
+        margin-bottom: 50px;
+    }
+    
+    .project-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .feature-item {
+        padding: 24px;
+    }
+    
+    .project-showcase-img {
+        transform: scale(1);
+    }
+    
+    .project-back-pill {
+        top: 15px; /* Safely tucked away from mobile status bars */
+        left: 15px;
+    }
+    
+    .tech-pill-modern {
+        padding: 6px 14px;
+        font-size: 0.65rem;
+    }
+}
+

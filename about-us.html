@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cibirajan Visvanathan | About Identity</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Special About Us Identity Styling */
+        .id-page-active {
+            background-color: var(--bg-cream);
+            color: var(--text-primary);
+            padding-top: 100px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .id-hero {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 80px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .id-content {
+            z-index: 10;
+        }
+
+        .id-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .id-display-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+        }
+
+        .id-bio {
+            font-family: var(--font-body);
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 60px;
+            font-weight: 500;
+        }
+
+        .id-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .id-main-img {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            border-radius: var(--radius-large);
+            filter: drop-shadow(0 40px 100px rgba(0, 0, 0, 0.1));
+            transition: var(--transition-smooth);
+        }
+
+        .id-main-img:hover {
+            transform: scale(1.02) translateY(-10px);
+        }
+
+        /* Hire Me Interaction */
+        .id-visual {
+            position: relative;
+        }
+
+        .hire-cloud {
+            position: absolute;
+            top: 2%;
+            right: 20px;
+            background: #fff;
+            padding: 16px 28px;
+            border-radius: 100px;
+            font-family: var(--font-display);
+            font-weight: 850;
+            font-size: 1.2rem;
+            color: #0d1b0d;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
+            white-space: nowrap;
+            pointer-events: auto; /* Enable interaction */
+            cursor: pointer;
+        }
+
+        .hire-cloud::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .hire-arrow {
+            position: absolute;
+            top: 15%;
+            right: 45px;
+            width: 100px;
+            height: 120px;
+            opacity: 0;
+            transform: translateY(20px) scale(0.5);
+            transition: all 0.5s 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: var(--accent-lime);
+            z-index: 45;
+            pointer-events: none;
+        }
+
+        .id-visual:hover .hire-cloud {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .id-visual:hover .hire-arrow {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .id-visual:hover .hire-arrow {
+            opacity: 1;
+            transform: translateX(-50%) rotate(0deg) scale(1);
+        }
+
+        .id-visual:hover .hire-arrow {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        @media (max-width: 1200px) {
+            .hire-cloud { right: 0; top: -10px; }
+            .hire-arrow { display: none; }
+        }
+
+        /* Stats Grid Architected */
+        .id-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 80px;
+            max-width: var(--container-max);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 24px;
+        }
+
+        .id-stat-box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: var(--radius-medium);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: var(--transition-smooth);
+        }
+
+        .id-stat-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-lime);
+        }
+
+        .id-stat-num {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 950;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .id-stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* Timeline Redesign — Identity Style */
+        .id-timeline-section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .id-timeline-grid {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .id-timeline-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            align-items: start;
+            gap: 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: var(--radius-medium);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: var(--transition-smooth);
+        }
+
+        .id-timeline-item:hover {
+            background: #ffffff;
+            border-color: var(--accent-lime);
+        }
+
+        .id-year {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 950;
+            color: var(--accent-lime);
+            line-height: 1;
+        }
+
+        .id-milestone h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 850;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .id-milestone p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 800px;
+        }
+
+        /* Resume Previewer CSS */
+        .resume-preview-section {
+            padding: 80px 24px 160px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .resume-viewer-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: var(--radius-large);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resume-viewer-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .resume-header-overlay {
+            padding: 24px;
+            background: var(--bg-cream);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resume-fallback-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            z-index: 1;
+            padding: 40px;
+        }
+
+        @media (max-width: 991px) {
+            .id-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .id-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .id-bio {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .id-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .id-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .id-timeline-item {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            /* Responsive Interaction Assets: Force Stay On Mobile */
+            .id-main-img {
+                max-width: 90%;
+                margin-top: 40px;
+            }
+            
+            .hire-cloud, .hire-arrow {
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: block !important;
+                z-index: 100 !important;
+            }
+            
+            .hire-cloud {
+                top: 0px !important;
+                right: 20px !important;
+                transform: scale(0.9) !important;
+                font-size: 1rem;
+                padding: 10px 22px;
+            }
+            
+            .hire-arrow {
+                top: 50px !important; /* Position below cloud */
+                right: 35px !important;
+                width: 70px !important;
+                height: 90px !important;
+                transform: scale(0.8) rotate(-5deg) !important;
+            }
+            
+            .resume-viewer-container {
+                height: 500px;
+            }
+        }
+    </style>
+    <script src="components.js" defer></script>
+</head>
+
+<body class="id-page-active">
+    <global-nav></global-nav>
+    
+    <main>
+        <!-- Identity Hero -->
+        <section class="id-hero">
+            <div class="id-content">
+                <span class="id-label">FULL STACK DEVELOPER @ CLOSEFUTURE</span>
+                <h1 class="id-display-name">Cibirajan <br> Visvanathan</h1>
+                <p class="id-bio">
+                    Building robust, scalable digital ecosystems since 2021. <br>
+                    Currently optimizing high-performance applications at CloseFuture with a focus on Logic,
+                    Architecture, and User Clarity.
+                </p>
+                <div class="id-cta" style="display: flex; gap: 16px; margin-top: 32px;">
+                    <a href="https://cal.com/cibirajan-v/30min" target="_blank" class="nav-btn-pill active">BOOK
+                        STRATEGY CALL</a>
+                    <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
+                        download class="nav-btn-pill" style="background: var(--text-primary); color: #fff;">DOWNLOAD
+                        RESUME</a>
+                </div>
+            </div>
+            <div class="id-visual">
+                <a href="#resume-section" style="text-decoration: none;">
+                    <img src="assets/center.png" alt="Cibirajan Visvanathan" class="id-main-img" style="cursor: pointer;">
+                </a>
+                
+                <!-- Interaction Artifacts -->
+                <div class="hire-cloud fade-in-up" onclick="window.location.href='#resume-section'">Hire me 👋</div>
+                <div class="hire-arrow fade-in-up green-arrow">
+                    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M70 10 C70 80 50 110 10 110" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M22 100L10 110L22 120" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Stats Grid -->
+        <section class="id-stats-grid">
+            <div class="id-stat-box">
+                <div class="id-stat-num">10+</div>
+                <div class="id-stat-label">Projects Completed</div>
+            </div>
+            <div class="id-stat-box">
+                <div class="id-stat-num">213+</div>
+                <div class="id-stat-label">Functions Written</div>
+            </div>
+            <div class="id-stat-box">
+                <div class="id-stat-num">50k</div>
+                <div class="id-stat-label">Daily API Calls</div>
+            </div>
+            <div class="id-stat-box">
+                <div class="id-stat-num">6.5k</div>
+                <div class="id-stat-label">Active Users Handled</div>
+            </div>
+        </section>
+
+        <!-- Journey Timeline Area -->
+        <section class="id-timeline-section">
+            <div class="section-header">
+                <span class="section-label">🏛️ Milestones</span>
+                <h2 class="section-title">Technical Odyssey</h2>
+            </div>
+
+            <div class="id-timeline-grid">
+                <div class="id-timeline-item">
+                    <div class="id-year">2021</div>
+                    <div class="id-milestone">
+                        <h3>Foundation & First Lines</h3>
+                        <p>Commenced B.Tech in Artificial Intelligence & Machine Learning. Immersed in Python, C, and
+                            the mathematical primitives of modern software architecture.</p>
+                    </div>
+                </div>
+                <div class="id-timeline-item">
+                    <div class="id-year">2024</div>
+                    <div class="id-milestone">
+                        <h3>Architecture Expansion</h3>
+                        <p>Transitioned into building production-ready CRM systems and high-concurrency Node.js
+                            backends. Achieved expertise in Supabase, Flutter, and serverless edge computing.</p>
+                    </div>
+                </div>
+                <div class="id-timeline-item">
+                    <div class="id-year">2025</div>
+                    <div class="id-milestone">
+                        <h3>Engineering @ CloseFuture</h3>
+                        <p>Joining the elite product team at CloseFuture to ship high-stakes digital experiences.
+                            Focused on bridging the gap between complex logic and premium UI/UX.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Previewer -->
+        <section class="resume-preview-section" id="resume-section">
+            <div class="section-header">
+                <span class="section-label">📜 Official Records</span>
+                <h2 class="section-title">Resume Preview</h2>
+            </div>
+
+            <div class="resume-viewer-container">
+                <!-- Supabase Cloud Viewer -->
+                <iframe
+                    src="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
+                    class="resume-viewer-iframe" style="position: absolute; top: 0; left: 0; z-index: 5;"></iframe>
+
+                <!-- Persistent Fallback UI (Visible if blocked or loading) -->
+                <div class="resume-fallback-content">
+                    <span style="font-size: 4rem; margin-bottom: 20px; display: block;">📜</span>
+                    <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 15px;">Document
+                        Preview Blocked?</h3>
+                    <p
+                        style="color: var(--text-muted); margin-bottom: 30px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                        Some browsers restrict embedded cloud PDFs. For the best experience, view the document directly.
+                    </p>
+                    <a href="https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/resumes/Cibirajan%20V%20Resume.pdf"
+                        target="_blank" class="nav-btn-pill active" style="padding: 15px 30px;">OPEN IN NEW TAB</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <global-footer></global-footer>
+    <script src="components.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

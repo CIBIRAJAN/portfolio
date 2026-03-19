@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Cibirajan Visvanathan</title>
+    <meta name="description" content="Insights on product engineering, system architecture, and building premium web apps.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg-cream: #f1ede1;
+            --text-dark: #000;
+            --accent-lime: #c7ebae;
+        }
+        body {
+            margin: 0;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .blog-hero {
+            padding: 180px 5% 100px;
+            text-align: center;
+        }
+        .blog-header-label {
+            display: inline-block;
+            background-color: var(--accent-lime);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        .blog-header-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 30px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+        .blog-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        .blog-empty {
+            text-align: center;
+            padding: 150px 5%;
+            font-size: 1.5rem;
+            opacity: 0.5;
+            font-family: 'Syne', sans-serif;
+        }
+        .nav-back {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 1000;
+            background-color: var(--text-dark);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        .nav-back:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-back">
+        <span>←</span> Portfolio
+    </a>
+
+    <header class="blog-hero">
+        <span class="blog-header-label">Digital Journal</span>
+        <h1 class="blog-header-title">Product Engineering,<br>Simplified.</h1>
+    </header>
+
+    <div class="blog-empty">
+        <p>Stay tuned! Exploring deep technical insights currently.</p>
+    </div>
+
+    <footer class="footer-modern">
+        <div class="footer-container">
+            <!-- Top Tier -->
+            <div class="footer-top-tier">
+                <div class="footer-nav-links">
+                    <a href="index.html#hero">HOME</a>
+                    <a href="index.html#projects">PROJECTS</a>
+                    <a href="index.html#workethic">JOURNEY</a>
+                    <a href="about-us.html">IDENTITY</a>
+                    <a href="https://cal.com/cibirajan-v/30min">CONTACT</a>
+                </div>
+                <div class="footer-social-circles">
+                    <a href="mailto:vcibirajan@gmail.com" class="social-circle" title="Email">📧</a>
+                    <a href="https://twitter.com/_cibirajan" target="_blank" class="social-circle" title="Twitter">𝕏</a>
+                    <a href="https://linkedin.com/in/cibirajan-visvanathan-14b35224a/" target="_blank" class="social-circle" title="LinkedIn">in</a>
+                    <a href="https://github.com/CIBIRAJAN" target="_blank" class="social-circle" title="GitHub">🐙</a>
+                    <a href="https://linkedin.com/in/cibirajan-visvanathan-14b35224a/" target="_blank" class="social-circle" title="Connect">+</a>
+                </div>
+            </div>
+
+            <!-- Bottom Tier -->
+            <div class="footer-bottom-tier">
+                <div class="footer-brand-large">CIBIRAJAN</div>
+                <div class="footer-copyright-meta">
+                    2026 © Copyrights Cibirajan All rights reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll To Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+            <polyline points="18 9 12 3 6 9"></polyline>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
