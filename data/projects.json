@@ -1,0 +1,74 @@
+[
+    {
+        "id": "fintech",
+        "title": "Financial Management Ecosystem",
+        "category": "FinTech Ecosystem",
+        "description": "A high-performance system for tracking income, shared wallets, and custom analytics with gamified rewards.",
+        "image": "assets/images/projects/agentgo-project.png",
+        "link": "projects/project-fintech.html",
+        "tech": ["Flutter", "Supabase", "Stripe"]
+    },
+    {
+        "id": "workspace",
+        "title": "WorkSpace Booking Suite",
+        "category": "Enterprise SaaS",
+        "description": "A modern digital initiative for high-performance booking, scalable backend systems, and intuitive coworking UX.",
+        "image": "assets/images/projects/webiz-project.png",
+        "link": "projects/project-workspace.html",
+        "tech": ["FlutterFlow", "Node.js", "IoT"]
+    },
+    {
+        "id": "agentgo",
+        "title": "AgentGo — Insurance CRM",
+        "category": "Sales & CRM",
+        "description": "State-of-the-art CRM for insurance agents featuring full-cycle client management and automated commission tracking.",
+        "image": "assets/images/projects/agentgo-project.png",
+        "link": "projects/project-agentgo.html",
+        "tech": ["Flutter", "Supabase", "Agent Networking"]
+    },
+    {
+        "id": "internal-comm",
+        "title": "Internal Communication Platform",
+        "category": "Secure Comms",
+        "description": "A high-performance secure messaging platform for enterprise collaboration and real-time data sync.",
+        "image": "assets/images/projects/admin-dashboard.png",
+        "link": "projects/project-internal-comm.html",
+        "tech": ["Real-time", "Node.js", "Enterprise Sync"]
+    },
+    {
+        "id": "agri-ai",
+        "title": "AI Agriculture System",
+        "category": "AI & Machine Learning",
+        "description": "Intelligent system for early detection of crop-related risks using data-driven insights and conference-grade AI models.",
+        "image": "assets/images/projects/iot-dashboard-project.png",
+        "link": "projects/project-agri-ai.html",
+        "tech": ["Python", "ML Models", "Agritech"]
+    },
+    {
+        "id": "transport",
+        "title": "No-App Transport Booking",
+        "category": "Accessibility Solutions",
+        "description": "An efficient method for booking transportation without a mobile app, focusing on high availability and low-latency interaction.",
+        "image": "assets/images/projects/webiz-project.png",
+        "link": "projects/project-transport.html",
+        "tech": ["Web-First", "Real-time Allocation", "UX Optimization"]
+    },
+    {
+        "id": "cardio-ai",
+        "title": "Cardio Disease Forecasting",
+        "category": "HealthTech AI",
+        "description": "Advanced heart disease risk forecasting system using clinical machine learning markers to improve patient outcomes.",
+        "image": "assets/images/projects/iot-dashboard-project.png",
+        "link": "projects/project-cardio-ai.html",
+        "tech": ["ML Forecast", "Clinical Data", "Scikit-learn"]
+    },
+    {
+        "id": "sasa",
+        "title": "SASA — Academic Platform",
+        "category": "EdTech Platform",
+        "description": "Seamless Academic & Skill Assessment Platform for integrated performance tracking and real-time student evaluation.",
+        "image": "assets/images/projects/admin-dashboard.png",
+        "link": "projects/project-sasa.html",
+        "tech": ["Academic Tech", "Skill Mapping", "Data Analysis"]
+    }
+]

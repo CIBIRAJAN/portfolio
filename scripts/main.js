@@ -143,39 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Note: TagCloud background is now initialized within the <home-hero> component.
 
-    // ===== Scroll To Top Functionality =====
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    // Note: Scroll To Top Functionality is now handled within the <global-footer> component.
 
-    if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-            // Show button after 300px
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    // ===== Hire Me Navigation =====
-    const hireCloud = document.querySelector('.hire-cloud');
-    const resumeSection = document.getElementById('resume-section');
-
-    if (hireCloud && resumeSection) {
-        hireCloud.addEventListener('click', () => {
-            resumeSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-    }
+    // Note: Hire Me navigation is handled within the About Us page logic.
 
     // Note: Customer swipe logic is now handled within the <customer-reviews> component.
 

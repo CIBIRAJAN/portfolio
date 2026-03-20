@@ -10,7 +10,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Component Scripts -->
+    <script src="components/nav.js" defer></script>
+    <script src="components/footer.js" defer></script>
+    
     <style>
         .page-404-active {
             background-color: var(--bg-cream);
@@ -75,18 +80,7 @@
     </style>
 </head>
 <body class="page-404-active">
-    <!-- Navbar -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo" style="text-decoration: none; color: inherit;">CIBIRAJAN</a>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-btn-pill">HOME</a>
-                <a href="index.html#projects" class="nav-btn-pill">PROJECTS</a>
-                <a href="blog.html" class="nav-btn-pill">BLOG</a>
-                <a href="about-us.html" class="nav-btn-pill">ABOUT</a>
-            </div>
-        </div>
-    </nav>
+    <global-nav></global-nav>
 
     <main class="not-found-hero">
         <div class="code-404">404</div>
@@ -98,8 +92,6 @@
     </main>
 
     <global-footer></global-footer>
-    
-    <script src="components.js"></script>
-    <script src="script.js"></script>
+    <script src="scripts/main.js" defer></script>
 </body>
 </html>
