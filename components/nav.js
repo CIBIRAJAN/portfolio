@@ -42,7 +42,7 @@ class GlobalNav extends HTMLElement {
     }
 
     setActivePage() {
-        const path = window.location.pathname;
+        const path = window.location.pathname.toLowerCase();
         let currentPage = 'home';
         
         if (path.includes('blog.html')) currentPage = 'blog';
@@ -55,7 +55,7 @@ class GlobalNav extends HTMLElement {
     }
 
     getPathPrefix() {
-        const path = window.location.pathname;
+        const path = window.location.pathname.toLowerCase();
         if (path.includes('/projects/') || path.includes('/pages/')) {
             return '../';
         }

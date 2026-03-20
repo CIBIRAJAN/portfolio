@@ -26,7 +26,7 @@ class ProjectShowcase extends HTMLElement {
 
     getPathPrefix() {
         const path = window.location.pathname;
-        if (path.includes('/projects/') || path.includes('/pages/')) {
+        if (path.toLowerCase().includes('/projects/') || path.toLowerCase().includes('/pages/')) {
             return '../';
         }
         return '';
