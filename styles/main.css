@@ -138,21 +138,21 @@ body.hero-active .nav-logo {
     /* Keep consistent on cream hero */
 }
 
-/* Side Slider Menu Architecture */
+/* Trendy Mobile Menu Redesign */
 .mobile-menu {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 200px;
-    max-width: 65vw;
+    width: 600px;
+    max-width: 100%;
     height: 100vh;
-    background: #ffffff;
-    z-index: 2000;
+    background: #0B1E0B; /* Dark Deep Green matching identity */
+    z-index: 100001;
     display: flex;
     flex-direction: column;
-    padding: 60px 25px;
-    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.1);
-    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
+    transition: right 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #ffffff;
 }
 
 .mobile-menu.active {
@@ -162,13 +162,13 @@ body.hero-active .nav-logo {
 .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 1999;
+    background: rgba(11, 30, 11, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 100000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.6s ease;
 }
 
 .mobile-menu-overlay.active {
@@ -176,35 +176,107 @@ body.hero-active .nav-logo {
     pointer-events: auto;
 }
 
-.hamburger-btn {
-    display: none;
-    width: 44px;
-    height: 44px;
-    border: none;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: var(--radius-full);
-    justify-content: center;
+.mobile-menu-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: flex;
     align-items: center;
-    color: var(--text-primary);
-    cursor: pointer;
-    pointer-events: auto;
-    position: relative;
-    z-index: 9999;
+    justify-content: center;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu-close:hover {
+    background: var(--accent-lime);
+    color: var(--bg-dark);
+    transform: rotate(90deg);
+}
+
+.mobile-menu-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 60px;
+    justify-content: center;
+}
+
+.mobile-menu-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-lime);
+    letter-spacing: 0.5em;
+    margin-bottom: 40px;
+    opacity: 0.6;
 }
 
 .mobile-menu-links {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 20px;
 }
 
 .mobile-link {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 800;
-    color: var(--text-primary);
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu.active .mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(0.2s + (var(--i) * 0.1s));
+}
+
+.mobile-link span {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--accent-lime);
+    margin-top: 15px;
+    opacity: 0.5;
+}
+
+.mobile-link:hover {
+    color: var(--accent-lime);
+    padding-left: 20px;
+}
+
+.mobile-menu-footer {
+    padding: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-socials {
+    display: flex;
+    gap: 30px;
+}
+
+.mobile-socials a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.mobile-socials a:hover {
+    opacity: 1;
+    color: var(--accent-lime);
 }
 
 .nav-links {
@@ -2046,6 +2118,19 @@ body.hero-active .nav-logo {
         margin-top: 60px;
         /* Shifted up slightly to guarantee breathing room for 50vh image */
         margin-bottom: 0px !important;
+    }
+
+    /* Navigation Mobile Fixes */
+    .nav-menu {
+        display: none !important;
+    }
+    
+    .hamburger-btn {
+        display: flex !important;
+    }
+    
+    .nav-container {
+        padding: 0 10px;
     }
 
     /* Tinder-Style Stack System for Customers */

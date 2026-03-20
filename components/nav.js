@@ -28,11 +28,27 @@ class GlobalNav extends HTMLElement {
 
             <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
             <div class="mobile-menu" id="mobileMenu">
-                <div class="mobile-menu-links">
-                    <a href="${pathPrefix}index.html" class="mobile-link" data-page="home">HOME</a>
-                    <a href="${pathPrefix}index.html#projects" class="mobile-link" data-page="projects">PROJECTS</a>
-                    <a href="${pathPrefix}pages/blog.html" class="mobile-link" data-page="blog">BLOG</a>
-                    <a href="${pathPrefix}pages/about-us.html" class="mobile-link" data-page="about">ABOUT</a>
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                
+                <div class="mobile-menu-content">
+                    <div class="mobile-menu-label">MENU</div>
+                    <div class="mobile-menu-links">
+                        <a href="${pathPrefix}index.html" class="mobile-link" data-page="home"><span>01.</span> HOME</a>
+                        <a href="${pathPrefix}index.html#projects" class="mobile-link" data-page="projects"><span>02.</span> PROJECTS</a>
+                        <a href="${pathPrefix}pages/blog.html" class="mobile-link" data-page="blog"><span>03.</span> BLOG</a>
+                        <a href="${pathPrefix}pages/about-us.html" class="mobile-link" data-page="about"><span>04.</span> ABOUT</a>
+                    </div>
+                    
+                    <div class="mobile-menu-footer">
+                        <div class="mobile-socials">
+                            <a href="https://twitter.com/_cibirajan" target="_blank">TW</a>
+                            <a href="https://linkedin.com/in/cibirajan-visvanathan-14b35224a/" target="_blank">LI</a>
+                            <a href="https://github.com/CIBIRAJAN" target="_blank">GH</a>
+                            <a href="mailto:vcibirajan@gmail.com">EM</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
@@ -67,6 +83,7 @@ class GlobalNav extends HTMLElement {
         let navMenuBtn = this.querySelector('#navMenuBtn');
         let mobileMenu = this.querySelector('#mobileMenu');
         let mobileMenuOverlay = this.querySelector('#mobileMenuOverlay');
+        let mobileMenuClose = this.querySelector('#mobileMenuClose');
 
         if (!navMenuBtn && navContainer) {
             navMenuBtn = document.createElement('button');
@@ -83,6 +100,12 @@ class GlobalNav extends HTMLElement {
                 const isActive = mobileMenu.classList.toggle('active');
                 mobileMenuOverlay.classList.toggle('active');
                 document.body.style.overflow = isActive ? 'hidden' : '';
+                
+                // Add staggered animation delay
+                const links = mobileMenu.querySelectorAll('.mobile-link');
+                links.forEach((link, i) => {
+                    link.style.setProperty('--i', i);
+                });
             };
 
             const closeMenu = () => {
@@ -93,10 +116,21 @@ class GlobalNav extends HTMLElement {
 
             navMenuBtn.onclick = toggleMenu;
             mobileMenuOverlay.onclick = closeMenu;
+            if (mobileMenuClose) mobileMenuClose.onclick = closeMenu;
 
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
-                link.onclick = closeMenu;
+                link.onclick = (e) => {
+                    // Small delay for effect if smooth scrolling
+                    setTimeout(closeMenu, 300);
+                };
+            });
+
+            // Close menu on desktop resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                }
             });
         }
     }
