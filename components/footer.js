@@ -9,8 +9,102 @@
  */
 
 class GlobalFooter extends HTMLElement {
-    connectedCallback() {
+    constructor() {
+        super();
+        this.supabase = null;
+    }
+
+    async connectedCallback() {
+        this.renderLoading();
+        
+        try {
+            // Wait max 3 seconds for Supabase
+            const dbLoaded = await Promise.race([
+                this.waitForSupabase(),
+                new Promise(resolve => setTimeout(() => resolve(false), 3000))
+            ]);
+            
+            if (dbLoaded !== false && this.supabase) {
+                const { data: links, error } = await this.supabase
+                    .from('footer_links')
+                    .select('*')
+                    .order('created_at', { ascending: true });
+
+                if (!error && links && links.length > 0) {
+                    this.render(links);
+                    return;
+                }
+            }
+            throw new Error('Using fallback');
+        } catch (error) {
+            console.warn('Footer using static fallback');
+            this.render(this.getFallbackLinks());
+        }
+    }
+
+    getFallbackLinks() {
+        return [
+            { title: 'HOME', url: 'index.html#hero', type: 'nav' },
+            { title: 'PROJECTS', url: 'index.html#projects', type: 'nav' },
+            { title: 'JOURNEY', url: 'index.html#workethic', type: 'nav' },
+            { title: 'IDENTITY', url: 'pages/about-us.html', type: 'nav' },
+            { title: 'GitHub', url: 'https://github.com/CIBIRAJAN', icon: '🐙', type: 'social' },
+            { title: 'LinkedIn', url: 'https://linkedin.com/in/cibirajan-visvanathan-14b35224a/', icon: 'in', type: 'social' },
+            { title: 'Twitter', url: 'https://twitter.com/_cibirajan', icon: '𝕏', type: 'social' },
+            { title: 'Email', url: 'mailto:vcibirajan@gmail.com', icon: '📧', type: 'social' }
+        ];
+    }
+
+    async waitForSupabase() {
+        return new Promise((resolve) => {
+            const check = () => {
+                if (window.supabase) {
+                    this.supabase = window.supabase.createClient(
+                        'https://kfcqfaqkxbsvjatzjxfd.supabase.co',
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs'
+                    );
+                    resolve(true);
+                } else {
+                    setTimeout(check, 50);
+                }
+            };
+            check();
+        });
+    }
+
+    renderLoading() {
         const pathPrefix = this.getPathPrefix();
+        this.innerHTML = `
+            <footer class="footer-modern">
+                <div class="footer-container">
+                    <p style="text-align: center; opacity: 0.5;">Loading footer...</p>
+                </div>
+            </footer>
+        `;
+    }
+
+    render(links) {
+        const pathPrefix = this.getPathPrefix();
+        const navLinks = links.filter(l => l.type === 'nav');
+        const socialLinks = links.filter(l => l.type === 'social');
+
+        const navHtml = navLinks.map(link => `
+            <a href="${link.url.startsWith('http') ? link.url : pathPrefix + link.url}">${link.title}</a>
+        `).join('');
+
+        const socialHtml = socialLinks.map(link => {
+            const isEmoji = !link.icon || link.icon.length <= 2;
+            const iconHtml = isEmoji 
+                ? link.icon || '' 
+                : `<img src="${link.icon.startsWith('http') ? link.icon : pathPrefix + link.icon}" alt="${link.title}" style="width: 20px; height: 20px;">`;
+            
+            return `
+                <a href="${link.url}" class="social-circle" title="${link.title}" target="_blank">
+                    ${iconHtml}
+                </a>
+            `;
+        }).join('');
+
         this.innerHTML = `
     <!-- ========== LAUNCH SECTION (CTA) — Compact CloseFuture Style ========== -->
     <section class="section section-launch" id="contact">
@@ -30,17 +124,10 @@ class GlobalFooter extends HTMLElement {
             <!-- Top Tier -->
             <div class="footer-top-tier">
                 <div class="footer-nav-links">
-                    <a href="${pathPrefix}index.html#hero">HOME</a>
-                    <a href="${pathPrefix}index.html#projects">PROJECTS</a>
-                    <a href="${pathPrefix}index.html#workethic">JOURNEY</a>
-                    <a href="${pathPrefix}pages/about-us.html">IDENTITY</a>
-                    <a href="https://cal.com/cibirajan-v/30min">CONTACT</a>
+                    ${navHtml}
                 </div>
                 <div class="footer-social-circles">
-                    <a href="mailto:vcibirajan@gmail.com" class="social-circle" title="Email">📧</a>
-                    <a href="https://twitter.com/_cibirajan" target="_blank" class="social-circle" title="Twitter">𝕏</a>
-                    <a href="https://linkedin.com/in/cibirajan-visvanathan-14b35224a/" target="_blank" class="social-circle" title="LinkedIn">in</a>
-                    <a href="https://github.com/CIBIRAJAN" target="_blank" class="social-circle" title="GitHub">🐙</a>
+                    ${socialHtml}
                 </div>
             </div>
 
@@ -63,6 +150,10 @@ class GlobalFooter extends HTMLElement {
     </button>
         `;
 
+        this.initButtons();
+    }
+
+    initButtons() {
         const scrollTopBtn = this.querySelector('#scrollTopBtn');
         if (scrollTopBtn) {
             window.addEventListener('scroll', () => {

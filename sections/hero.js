@@ -11,8 +11,62 @@
  */
 
 class HomeHero extends HTMLElement {
-    connectedCallback() {
+    constructor() {
+        super();
+        this.supabase = null;
+        this.images = {
+            hero_left: 'assets/images/hero/left.webp',
+            hero_center: 'assets/images/hero/center.webp',
+            hero_right: 'assets/images/hero/right.webp'
+        };
+    }
+
+    async connectedCallback() {
+        this.renderLoading();
+        
+        try {
+            await this.waitForSupabase();
+            const { data, error } = await this.supabase
+                .from('section_images')
+                .select('section_name, image_url');
+
+            if (!error && data) {
+                data.forEach(item => {
+                    this.images[item.section_name] = item.image_url;
+                });
+            }
+        } catch (e) {
+            console.warn('Hero using local fallbacks');
+        }
+        
+        this.render();
+    }
+
+    async waitForSupabase() {
+        return new Promise((resolve) => {
+            const check = () => {
+                if (window.supabase) {
+                    this.supabase = window.supabase.createClient(
+                        'https://kfcqfaqkxbsvjatzjxfd.supabase.co',
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs'
+                    );
+                    resolve();
+                } else {
+                    setTimeout(check, 50);
+                }
+            };
+            check();
+        });
+    }
+
+    renderLoading() {
+        this.innerHTML = `<section class="hero" id="hero"><div class="hero-main-cta"><h1 class="hero-main-headline">Loading...</h1></div></section>`;
+    }
+
+    render() {
         const pathPrefix = this.getPathPrefix();
+        const getImg = (key) => this.images[key].startsWith('http') ? this.images[key] : pathPrefix + this.images[key];
+
         this.innerHTML = `
     <section class="hero" id="hero">
         <div id="hero-cloud" class="hero-cloud-bg"></div>
@@ -28,26 +82,26 @@ class HomeHero extends HTMLElement {
         <div class="hero-visual-container">
             <div class="mobile-hero-visual">
                 <a href="${pathPrefix}pages/about-us.html" class="mobile-hero-link">
-                    <img src="${pathPrefix}assets/images/hero/center.webp" alt="Cibirajan" class="mobile-hero-img persona-img" draggable="false">
+                    <img src="${getImg('hero_center')}" alt="Cibirajan" class="mobile-hero-img persona-img" draggable="false">
                 </a>
             </div>
 
             <div class="persona-showcase">
                 <div class="persona-zone persona-side persona-builder" data-target="workethic" data-persona="builder">
                     <div class="persona-image-wrap">
-                        <img src="${pathPrefix}assets/images/hero/left.webp" alt="Builder Persona" class="persona-img">
+                        <img src="${getImg('hero_left')}" alt="Builder Persona" class="persona-img">
                     </div>
                 </div>
 
                 <div class="persona-zone persona-center persona-identity" data-target="journey" data-persona="identity">
                     <div class="persona-image-wrap">
-                        <img src="${pathPrefix}assets/images/hero/center.webp" alt="Identity Persona" class="persona-img" draggable="false">
+                        <img src="${getImg('hero_center')}" alt="Identity Persona" class="persona-img" draggable="false">
                     </div>
                 </div>
 
                 <div class="persona-zone persona-side persona-thinker" data-target="projects" data-persona="thinker">
                     <div class="persona-image-wrap">
-                        <img src="${pathPrefix}assets/images/hero/right.webp" alt="Thinker Persona" class="persona-img">
+                        <img src="${getImg('hero_right')}" alt="Thinker Persona" class="persona-img">
                     </div>
                 </div>
             </div>

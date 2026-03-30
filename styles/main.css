@@ -674,6 +674,67 @@ body.hero-active .nav-logo {
     padding-bottom: 80px;
 }
 
+/* Project Filters */
+.project-filters {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 28px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    background: transparent;
+    border: 1px solid rgba(11, 30, 11, 0.1);
+    color: var(--text-muted);
+}
+
+.filter-btn:hover {
+    background: rgba(11, 30, 11, 0.05);
+}
+
+.filter-btn.active {
+    background: var(--bg-dark);
+    color: var(--accent-lime);
+    border-color: var(--bg-dark);
+}
+
+.project-case-study-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-top: 40px;
+}
+
+.project-case-study-label svg {
+    transition: transform 0.4s ease;
+}
+
+.project-card-link:hover .project-case-study-label svg {
+    transform: translateX(8px);
+}
+
+.no-projects {
+    padding: 80px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    background: #E8E6D9;
+    border-radius: var(--radius-large);
+}
+
 .projects-stack-wrapper {
     display: flex;
     flex-direction: column;
@@ -738,6 +799,7 @@ body.hero-active .nav-logo {
 
 .project-image-side {
     flex: 1.2;
+    height: 450px; /* Fixed height to keep cards consistent */
     border-radius: var(--radius-medium);
     overflow: hidden;
     border: var(--border-thin);
@@ -745,8 +807,10 @@ body.hero-active .nav-logo {
 
 .project-image-side img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain; /* Ensures the whole image is visible within the box */
     display: block;
+    background: rgba(11, 30, 27, 0.02); /* Slight contrast background */
     transition: var(--transition-smooth);
 }
 

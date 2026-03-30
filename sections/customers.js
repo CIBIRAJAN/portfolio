@@ -9,88 +9,90 @@
  */
 
 class CustomerReviews extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-    <section class="section section-customers" id="customers">
-        <div class="section-header text-center">
-            <span class="section-label">🤝 Collaboration</span>
-            <h2 class="section-title">Our Happy Customers</h2>
-            <p class="section-subtitle">Real feedback from teams I've helped scale and succeed.</p>
-        </div>
+    constructor() {
+        super();
+        this.supabase = null;
+    }
 
-        <div class="marquee-ticker">
-            <div class="ticker-track">
-                <div class="customer-card tilt-left bg-lime">
-                    <div class="rating">★★★★★</div>
-                    <p class="review-text">"Cibirajan's ability to translate complex logic into seamless UI is unmatched. He didn't just build the app; he refined our entire product strategy."</p>
-                    <div class="customer-meta">
-                        <img src="assets/images/icons/avatar-1.png" alt="Sarah J" class="customer-avatar">
-                        <div>
-                            <div class="customer-name">Sarah Jenkins</div>
-                            <div class="customer-role">CEO, BloomCell</div>
-                        </div>
-                    </div>
+    async connectedCallback() {
+        this.renderLoading();
+        
+        try {
+            await this.waitForSupabase();
+            
+            const { data: reviews, error } = await this.supabase
+                .from('customers')
+                .select('*')
+                .order('created_at', { ascending: true });
+
+            if (error) throw error;
+            this.render(reviews);
+        } catch (error) {
+            console.error('Failed to load customers from Supabase:', error);
+            this.render([]); // Render empty or static fallback
+        }
+    }
+
+    async waitForSupabase() {
+        return new Promise((resolve) => {
+            const check = () => {
+                if (window.supabase) {
+                    this.supabase = window.supabase.createClient(
+                        'https://kfcqfaqkxbsvjatzjxfd.supabase.co',
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs'
+                    );
+                    resolve();
+                } else {
+                    setTimeout(check, 50);
+                }
+            };
+            check();
+        });
+    }
+
+    renderLoading() {
+        this.innerHTML = `
+            <section class="section section-customers" id="customers">
+                <div class="section-header text-center">
+                    <span class="section-label">🤝 Collaboration</span>
+                    <h2 class="section-title">Our Happy Customers</h2>
+                    <p class="section-subtitle">Loading reviews...</p>
                 </div>
-                <div class="customer-card tilt-right bg-dark">
-                    <div class="rating">★★★★★</div>
-                    <p class="review-text">"A rare engineer who understands business goals. The Edge Functions we implemented are handling 50k+ daily calls without a hitch."</p>
-                    <div class="customer-meta">
-                        <img src="assets/images/icons/avatar-2.png" alt="Arjun M" class="customer-avatar">
-                        <div>
-                            <div class="customer-name">Arjun Mehta</div>
-                            <div class="customer-role">CTO, Webiz</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Duplicate for Marquee Effect -->
-                <div class="customer-card tilt-left bg-cream">
-                    <div class="rating">★★★★★</div>
-                    <p class="review-text">"The dashboard he designed is hands down the best internal tool we've ever used. Clean, intuitive, and incredibly fast."</p>
-                    <div class="customer-meta">
-                        <img src="assets/images/icons/avatar-3.png" alt="Elena R" class="customer-avatar">
-                        <div>
-                            <div class="customer-name">Elena Rodriguez</div>
-                            <div class="customer-role">VP Product, Nexus</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-card tilt-right bg-lime">
-                    <div class="rating">★★★★★</div>
-                    <p class="review-text">"From design to deployment, the process was seamless. Cibirajan takes ownership of everything he touches."</p>
-                    <div class="customer-meta">
-                        <img src="assets/images/icons/avatar-4.png" alt="Chen W" class="customer-avatar">
-                        <div>
-                            <div class="customer-name">Chen Wei</div>
-                            <div class="customer-role">Lead Engineer, FlowOps</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Additional clones for smooth infinite loop -->
-                <div class="customer-card tilt-left bg-lime">
-                    <div class="rating">★★★★★</div>
-                    <p class="review-text">"Cibirajan's ability to translate complex logic into seamless UI is unmatched."</p>
-                    <div class="customer-meta">
-                        <img src="assets/images/icons/avatar-1.png" alt="Sarah J" class="customer-avatar">
-                        <div>
-                            <div class="customer-name">Sarah Jenkins</div>
-                            <div class="customer-role">CEO, BloomCell</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-card tilt-right bg-dark">
-                    <div class="rating">★★★★★</div>
-                    <p class="review-text">"The Edge Functions we implemented are handling 50k+ daily calls without a hitch."</p>
-                    <div class="customer-meta">
-                        <img src="assets/images/icons/avatar-2.png" alt="Arjun M" class="customer-avatar">
-                        <div>
-                            <div class="customer-name">Arjun Mehta</div>
-                            <div class="customer-role">CTO, Webiz</div>
-                        </div>
+            </section>
+        `;
+    }
+
+    render(reviews) {
+        const pathPrefix = this.getPathPrefix ? this.getPathPrefix() : '';
+        const reviewCards = reviews.map(review => `
+            <div class="customer-card ${review.tilt_class} ${review.bg_class}">
+                <div class="rating">${'★'.repeat(review.rating)}</div>
+                <p class="review-text">"${review.review}"</p>
+                <div class="customer-meta">
+                    <img src="${review.avatar.startsWith('http') ? review.avatar : pathPrefix + review.avatar}" alt="${review.name}" class="customer-avatar">
+                    <div>
+                        <div class="customer-name">${review.name}</div>
+                        <div class="customer-role">${review.role}</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        `).join('');
+
+        this.innerHTML = `
+            <section class="section section-customers" id="customers">
+                <div class="section-header text-center">
+                    <span class="section-label">🤝 Collaboration</span>
+                    <h2 class="section-title">Our Happy Customers</h2>
+                    <p class="section-subtitle">Real feedback from teams I've helped scale and succeed.</p>
+                </div>
+
+                <div class="marquee-ticker">
+                    <div class="ticker-track">
+                        ${reviewCards}
+                        ${reviewCards} <!-- Duplicate for marquee -->
+                    </div>
+                </div>
+            </section>
         `;
         this.initSwipe();
     }
@@ -141,6 +143,14 @@ class CustomerReviews extends HTMLElement {
                 currentX = 0;
             });
         }
+    }
+
+    getPathPrefix() {
+        const path = window.location.pathname;
+        if (path.toLowerCase().includes('/projects/') || path.toLowerCase().includes('/pages/')) {
+            return '../';
+        }
+        return '';
     }
 }
 customElements.define('customer-reviews', CustomerReviews);

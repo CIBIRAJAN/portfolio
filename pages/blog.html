@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <!-- Component Scripts -->
     <script src="../components/nav.js" defer></script>
     <script src="../components/footer.js" defer></script>
@@ -52,17 +55,48 @@
         .blog-grid {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 100px 5%;
+            padding: 20px 5% 100px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 40px;
         }
-        .blog-empty {
-            text-align: center;
-            padding: 150px 5%;
-            font-size: 1.5rem;
+        .blog-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        .blog-card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .blog-card-content {
+            padding: 30px;
+        }
+        .blog-card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .blog-card-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .blog-card-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
             opacity: 0.5;
-            font-family: 'Syne', sans-serif;
         }
         .nav-back {
             position: fixed;
@@ -96,12 +130,53 @@
         <h1 class="blog-header-title">Product Engineering,<br>Simplified.</h1>
     </header>
 
-    <div class="blog-empty">
-        <p>Stay tuned! Exploring deep technical insights currently.</p>
+    <div id="blog-container" class="blog-grid">
+        <!-- Dynamic Blog Posts Here -->
     </div>
 
     <global-footer></global-footer>
 
-    <script src="../scripts/main.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('blog-container');
+            
+            try {
+                // Wait for supabase to load
+                while(!window.supabase) await new Promise(r => setTimeout(r, 50));
+                
+                const supabase = window.supabase.createClient(
+                    'https://kfcqfaqkxbsvjatzjxfd.supabase.co',
+                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs'
+                );
+
+                const { data: posts, error } = await supabase
+                    .from('blog_posts')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<p class="blog-empty">Stay tuned! Exploring deep technical insights currently.</p>';
+                } else {
+                    container.innerHTML = posts.map(post => {
+                        const link = (post.link && !post.link.startsWith('http')) ? '../' + post.link : post.link;
+                        return `
+                        <a href="${link || '#'}" class="blog-card">
+                            <img src="${post.image.startsWith('http') ? post.image : '../' + post.image}" alt="${post.title}" class="blog-card-img" onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80'">
+                            <div class="blog-card-content">
+                                <span class="blog-card-date">${new Date(post.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                                <h3 class="blog-card-title">${post.title}</h3>
+                                <p class="blog-card-excerpt">${post.excerpt}</p>
+                            </div>
+                        </a>
+                    `}).join('');
+                }
+            } catch (err) {
+                console.error('Error fetching blog posts:', err);
+                container.innerHTML = '<p class="blog-empty">Error loading articles. Please try again later.</p>';
+            }
+        });
+    </script>
 </body>
 </html>
