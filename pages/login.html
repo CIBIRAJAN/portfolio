@@ -164,18 +164,21 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             <span>Portfolio CMS</span>
         </div>
-        <h1>Welcome Back</h1>
+        <h1 id="form-title">Welcome Back</h1>
         <form id="login-form">
             <div class="form-group">
-                <label>User ID</label>
+                <label>User ID / Email</label>
                 <input type="email" id="email" placeholder="email@example.com" required>
             </div>
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" id="password" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-login">Unlock Dashboard</button>
+            <button type="submit" class="btn-login" id="submit-btn">Unlock Dashboard</button>
             <div id="error-msg">❌ Invalid credentials. Please try again.</div>
+            <p id="toggle-text" style="margin-top: 25px; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
+                Don't have an account? <span id="auth-toggle-btn" style="color: var(--accent-lime); cursor: pointer; text-decoration: underline;">Create Account</span>
+            </p>
         </form>
     </div>
 
@@ -184,34 +187,72 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+        let isLoginMode = true;
+
+        const authToggleBtn = document.getElementById('auth-toggle-btn');
+        const formTitle = document.getElementById('form-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleText = document.getElementById('toggle-text');
+
+        function handleToggle() {
+            isLoginMode = !isLoginMode;
+            if (isLoginMode) {
+                formTitle.innerText = "Welcome Back";
+                submitBtn.innerText = "Unlock Dashboard";
+                toggleText.innerHTML = `Don't have an account? <span id="auth-toggle-btn" style="color: var(--accent-lime); cursor: pointer; text-decoration: underline;">Create Account</span>`;
+            } else {
+                formTitle.innerText = "Create Account";
+                submitBtn.innerText = "Register User";
+                toggleText.innerHTML = `Already have an account? <span id="auth-toggle-btn" style="color: var(--accent-lime); cursor: pointer; text-decoration: underline;">Sign In</span>`;
+            }
+            document.getElementById('auth-toggle-btn').addEventListener('click', handleToggle);
+        }
+
+        authToggleBtn.addEventListener('click', handleToggle);
+
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-msg');
-            const submitBtn = e.target.querySelector('button[type="submit"]');
 
             submitBtn.disabled = true;
-            submitBtn.innerText = "Authenticating...";
+            submitBtn.innerText = isLoginMode ? "Authenticating..." : "Creating Account...";
 
             try {
-                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-                
-                if (error) throw error;
-
-                if (data.session) {
-                    localStorage.setItem('cms_auth', 'true');
-                    localStorage.setItem('cms_user', email);
-                    window.location.href = 'admin.html';
+                if (isLoginMode) {
+                    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) throw error;
+                    if (data.session) {
+                        localStorage.setItem('cms_auth', 'true');
+                        localStorage.setItem('cms_user', email);
+                        window.location.href = 'admin.html';
+                    }
+                } else {
+                    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+                    if (error) throw error;
+                    
+                    if (data.session) {
+                        localStorage.setItem('cms_auth', 'true');
+                        localStorage.setItem('cms_user', email);
+                        window.location.href = 'admin.html';
+                    } else {
+                        errorMsg.innerText = "✉️ Verification email sent! Confirm to log in.";
+                        errorMsg.style.color = "#3F8F2D";
+                        errorMsg.style.display = 'block';
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = "Register User";
+                    }
                 }
             } catch (err) {
                 errorMsg.innerText = "❌ " + err.message;
+                errorMsg.style.color = "#ff4444";
                 errorMsg.style.display = 'block';
                 submitBtn.disabled = false;
-                submitBtn.innerText = "Unlock Dashboard";
+                submitBtn.innerText = isLoginMode ? "Unlock Dashboard" : "Register User";
                 setTimeout(() => {
                     errorMsg.style.display = 'none';
-                }, 4000);
+                }, 5000);
             }
         });
 
