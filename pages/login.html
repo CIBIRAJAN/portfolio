@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --bg-cream: #F6F8F1;
@@ -179,26 +180,44 @@
     </div>
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', (e) => {
+        const SUPABASE_URL = 'https://kfcqfaqkxbsvjatzjxfd.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-msg');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
 
-            if (email === 'vcibirajan@gmail.com' && password === 'cibi2710') {
-                localStorage.setItem('cms_auth', 'true');
-                localStorage.setItem('cms_user', email);
-                window.location.href = 'admin.html';
-            } else {
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Authenticating...";
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                
+                if (error) throw error;
+
+                if (data.session) {
+                    localStorage.setItem('cms_auth', 'true');
+                    localStorage.setItem('cms_user', email);
+                    window.location.href = 'admin.html';
+                }
+            } catch (err) {
+                errorMsg.innerText = "❌ " + err.message;
                 errorMsg.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Unlock Dashboard";
                 setTimeout(() => {
                     errorMsg.style.display = 'none';
-                }, 3000);
+                }, 4000);
             }
         });
 
         if(window.location.search === '?logout') {
             localStorage.removeItem('cms_auth');
+            localStorage.removeItem('cms_user');
         }
     </script>
 </body>

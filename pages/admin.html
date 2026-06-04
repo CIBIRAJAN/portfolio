@@ -740,17 +740,21 @@
             else fetchData();
         }
 
-        function setAuth() {
-            const isAuth = localStorage.getItem('cms_auth') === 'true';
-            if(!isAuth) {
+        async function setAuth() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if(!session) {
+                localStorage.removeItem('cms_auth');
                 window.location.href = 'login.html';
             } else {
+                localStorage.setItem('cms_auth', 'true');
                 fetchData();
             }
         }
 
-        function logout() {
+        async function logout() {
+            await supabaseClient.auth.signOut();
             localStorage.removeItem('cms_auth');
+            localStorage.removeItem('cms_user');
             window.location.href = 'login.html?logout';
         }
 
