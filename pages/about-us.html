@@ -973,10 +973,11 @@
                 if (data && data.length > 0 && data[0].url) {
                     const liveResumeUrl = data[0].url;
                     
-                    // Update download button in hero
+                    // Show download button in hero and update link
                     const downloadBtn = document.querySelector('a[download].nav-btn-pill');
                     if (downloadBtn) {
                         downloadBtn.href = liveResumeUrl;
+                        downloadBtn.style.display = '';
                     }
                     
                     // Update desktop iframe preview
@@ -989,6 +990,36 @@
                     const mobileViewBtn = document.querySelector('.btn-resume-mobile');
                     if (mobileViewBtn) {
                         mobileViewBtn.href = liveResumeUrl;
+                    }
+
+                    // Show the entire resume section
+                    const resumeSection = document.getElementById('resume-section');
+                    if (resumeSection) {
+                        resumeSection.style.display = '';
+                    }
+
+                    // Show hire me elements
+                    const hireCloud = document.querySelector('.hire-cloud');
+                    if (hireCloud) hireCloud.style.display = '';
+                    const hireArrow = document.querySelector('.hire-arrow');
+                    if (hireArrow) hireArrow.style.display = '';
+                } else {
+                    // No live resume! Hide the download button, the preview section, and CTAs
+                    const downloadBtn = document.querySelector('a[download].nav-btn-pill');
+                    if (downloadBtn) {
+                        downloadBtn.style.display = 'none';
+                    }
+                    const resumeSection = document.getElementById('resume-section');
+                    if (resumeSection) {
+                        resumeSection.style.display = 'none';
+                    }
+                    const hireCloud = document.querySelector('.hire-cloud');
+                    if (hireCloud) {
+                        hireCloud.style.display = 'none';
+                    }
+                    const hireArrow = document.querySelector('.hire-arrow');
+                    if (hireArrow) {
+                        hireArrow.style.display = 'none';
                     }
                 }
             } catch (err) {
