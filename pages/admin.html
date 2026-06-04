@@ -698,11 +698,10 @@
 
                 if (currentTable === 'resumes' && payload.is_live === true) {
                     // Turn off other live resumes to prevent unique index conflict
-                    const query = supabaseClient.from('resumes').update({ is_live: false });
                     if (editingId) {
-                        await query.neq('id', editingId);
+                        await supabaseClient.from('resumes').update({ is_live: false }).neq('id', editingId);
                     } else {
-                        await query;
+                        await supabaseClient.from('resumes').update({ is_live: false }).neq('id', '00000000-0000-0000-0000-000000000000');
                     }
                 }
 
