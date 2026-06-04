@@ -15,13 +15,14 @@ class GlobalFooter extends HTMLElement {
     }
 
     async connectedCallback() {
-        this.renderLoading();
+        const fallbacks = this.getFallbackLinks();
+        this.render(fallbacks);
         
         try {
-            // Wait max 3 seconds for Supabase
+            // Wait max 2 seconds for Supabase in background
             const dbLoaded = await Promise.race([
                 this.waitForSupabase(),
-                new Promise(resolve => setTimeout(() => resolve(false), 3000))
+                new Promise(resolve => setTimeout(() => resolve(false), 2000))
             ]);
             
             if (dbLoaded !== false && this.supabase) {
@@ -31,14 +32,34 @@ class GlobalFooter extends HTMLElement {
                     .order('created_at', { ascending: true });
 
                 if (!error && links && links.length > 0) {
-                    this.render(links);
-                    return;
+                    const navLinks = links.filter(l => l.type === 'nav');
+                    const finalLinks = [...links];
+                    
+                    if (navLinks.length === 0) {
+                        finalLinks.unshift(
+                            { title: 'HOME', url: 'index.html#hero', type: 'nav' },
+                            { title: 'PROJECTS', url: 'index.html#projects', type: 'nav' },
+                            { title: 'JOURNEY', url: 'index.html#workethic', type: 'nav' },
+                            { title: 'IDENTITY', url: 'pages/about-us.html', type: 'nav' }
+                        );
+                    }
+                    
+                    // Check if social links actually changed before re-rendering
+                    const currentSocial = fallbacks.filter(l => l.type === 'social');
+                    const newSocial = finalLinks.filter(l => l.type === 'social');
+                    
+                    const changed = currentSocial.length !== newSocial.length || 
+                        newSocial.some((link, i) => link.url !== currentSocial[i].url || 
+                                                 link.title !== currentSocial[i].title || 
+                                                 link.icon !== currentSocial[i].icon);
+                    
+                    if (changed) {
+                        this.render(finalLinks);
+                    }
                 }
             }
-            throw new Error('Using fallback');
         } catch (error) {
-            console.warn('Footer using static fallback');
-            this.render(this.getFallbackLinks());
+            console.warn('Footer background load failed:', error);
         }
     }
 
@@ -106,40 +127,85 @@ class GlobalFooter extends HTMLElement {
         }).join('');
 
         this.innerHTML = `
-    <!-- ========== LAUNCH SECTION (CTA) — Compact CloseFuture Style ========== -->
-    <section class="section section-launch" id="contact">
-        <div class="launch-container">
-            <div class="launch-visual">
-                <img src="${pathPrefix}assets/images/hero/launch-premium.webp" alt="Let's launch together" class="launch-img">
-            </div>
-            <div class="launch-content">
-                <h2 class="launch-title">Let’s launch together!</h2>
-                <a href="https://cal.com/cibirajan-v/30min" target="_blank" class="btn-book">Book a Call</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer-modern">
-        <div class="footer-container">
-            <!-- Top Tier -->
-            <div class="footer-top-tier">
-                <div class="footer-nav-links">
-                    ${navHtml}
+    <div class="footer-wrap-container">
+        <!-- ========== LAUNCH SECTION (CTA) ========== -->
+        <section class="section section-launch" id="contact">
+            <div class="launch-card-container">
+                <div class="launch-content">
+                    <span class="section-label" style="margin-bottom: 20px;">👉 Let's connect</span>
+                    <h2 class="launch-title">Let's launch together!</h2>
+                    <p class="launch-subtitle">Have an idea or a challenge? Let's connect and build something impactful.</p>
+                    <a href="https://cal.com/cibirajan-v/30min" target="_blank" class="btn-book">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Book a Call
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
-                <div class="footer-social-circles">
-                    ${socialHtml}
+                <div class="launch-visual">
+                    <img src="${pathPrefix}assets/images/hero/launch-premium.webp" alt="Let's launch together" class="launch-img">
                 </div>
             </div>
+        </section>
 
-            <!-- Bottom Tier -->
-            <div class="footer-bottom-tier">
-                <div class="footer-brand-large">CIBIRAJAN</div>
+        <!-- ========== GLOBAL FOOTER ========== -->
+        <footer class="footer-modern-light">
+            <div class="footer-container">
+                <!-- Left: Brand -->
+                <div class="footer-brand-col">
+                    <div class="footer-brand-large">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-lime)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>Cibirajan</span>
+                    </div>
+                    <p class="footer-tagline">Crafting digital experiences through elegant code and thoughtful design.</p>
+                </div>
+
+                <!-- Center: Nav Grid -->
+                <div class="footer-nav-grid">
+                    <a href="${pathPrefix}index.html#hero" class="nav-grid-item">
+                        <div class="nav-icon">🏠</div>
+                        <div class="nav-text">
+                            <span class="nav-title">Home</span>
+                            <span class="nav-sub">Back to overview</span>
+                        </div>
+                    </a>
+                    <a href="${pathPrefix}index.html#projects" class="nav-grid-item">
+                        <div class="nav-icon">📁</div>
+                        <div class="nav-text">
+                            <span class="nav-title">Projects</span>
+                            <span class="nav-sub">Explore my work</span>
+                        </div>
+                    </a>
+                    <a href="${pathPrefix}index.html#workethic" class="nav-grid-item">
+                        <div class="nav-icon">📊</div>
+                        <div class="nav-text">
+                            <span class="nav-title">Journey</span>
+                            <span class="nav-sub">See my process</span>
+                        </div>
+                    </a>
+                    <a href="${pathPrefix}pages/about-us.html" class="nav-grid-item">
+                        <div class="nav-icon">👤</div>
+                        <div class="nav-text">
+                            <span class="nav-title">Identity</span>
+                            <span class="nav-sub">Know more about me</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Right: Socials -->
+                <div class="footer-social-col">
+                    <div class="footer-social-circles">
+                        ${socialHtml}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-line">
                 <div class="footer-copyright-meta">
-                    2026 © Copyrights Cibirajan All rights reserved
+                    © 2026 Cibirajan. All rights reserved.
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
     
     <!-- Scroll To Top Button -->
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">

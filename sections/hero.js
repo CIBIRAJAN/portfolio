@@ -22,7 +22,8 @@ class HomeHero extends HTMLElement {
     }
 
     async connectedCallback() {
-        this.renderLoading();
+        // Render immediately using default/cached/fallback images
+        this.render();
         
         try {
             await this.waitForSupabase();
@@ -31,15 +32,37 @@ class HomeHero extends HTMLElement {
                 .select('section_name, image_url');
 
             if (!error && data) {
+                let updated = false;
                 data.forEach(item => {
-                    this.images[item.section_name] = item.image_url;
+                    if (this.images[item.section_name] !== item.image_url) {
+                        this.images[item.section_name] = item.image_url;
+                        updated = true;
+                    }
                 });
+                if (updated) {
+                    this.updateImages();
+                }
             }
         } catch (e) {
             console.warn('Hero using local fallbacks');
         }
-        
-        this.render();
+    }
+
+    updateImages() {
+        const pathPrefix = this.getPathPrefix();
+        const getImg = (key) => this.images[key].startsWith('http') ? this.images[key] : pathPrefix + this.images[key];
+
+        const mobileImg = this.querySelector('.mobile-hero-img');
+        if (mobileImg) mobileImg.src = getImg('hero_center');
+
+        const builderImg = this.querySelector('.persona-builder .persona-img');
+        if (builderImg) builderImg.src = getImg('hero_left');
+
+        const identityImg = this.querySelector('.persona-identity .persona-img');
+        if (identityImg) identityImg.src = getImg('hero_center');
+
+        const thinkerImg = this.querySelector('.persona-thinker .persona-img');
+        if (thinkerImg) thinkerImg.src = getImg('hero_right');
     }
 
     async waitForSupabase() {
@@ -60,7 +83,7 @@ class HomeHero extends HTMLElement {
     }
 
     renderLoading() {
-        this.innerHTML = `<section class="hero" id="hero"><div class="hero-main-cta"><h1 class="hero-main-headline">Loading...</h1></div></section>`;
+        // Kept for backward compatibility but no longer blocking
     }
 
     render() {
@@ -69,14 +92,42 @@ class HomeHero extends HTMLElement {
 
         this.innerHTML = `
     <section class="hero" id="hero">
+        <div class="hero-bg-shapes">
+            <div class="dotted-grid-left"></div>
+            <div class="dotted-grid-right"></div>
+            <div class="dotted-grid-bottom-left"></div>
+            <div class="dotted-grid-bottom-right"></div>
+            <div class="hero-radial-glow"></div>
+            <div class="hero-dashed-arch"></div>
+            
+
+            
+            <svg class="contour-line contour-top-left" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M-100,50 Q100,100 150,250 T300,450" stroke="rgba(78, 132, 53, 0.12)" stroke-width="1.5" fill="none"/>
+                <path d="M-50,0 Q150,50 200,200 T350,400" stroke="rgba(78, 132, 53, 0.08)" stroke-width="1.2" fill="none"/>
+            </svg>
+            <svg class="contour-line contour-bottom-right" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100,450 Q250,300 300,150 T450,-50" stroke="rgba(78, 132, 53, 0.12)" stroke-width="1.5" fill="none"/>
+                <path d="M50,400 Q200,250 250,100 T400,-100" stroke="rgba(78, 132, 53, 0.08)" stroke-width="1.2" fill="none"/>
+            </svg>
+        </div>
+
         <div id="hero-cloud" class="hero-cloud-bg"></div>
 
         <div class="hero-main-cta">
             <h1 class="hero-main-headline">
-                <span class="hero-headline-top">Building App That</span>
+                <span class="hero-headline-top">BUILDING APP THAT</span>
                 <span class="hero-headline-accent">Scale to High</span>
             </h1>
-            <a href="#projects" class="hero-works-btn">Works</a>
+            <a href="#projects" class="hero-works-btn">
+                WORKS
+                <span class="arrow-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </span>
+            </a>
         </div>
 
         <div class="hero-visual-container">
@@ -139,6 +190,7 @@ class HomeHero extends HTMLElement {
     initInteractions() {
         const zones = this.querySelectorAll('.persona-zone');
         const overlays = this.querySelectorAll('.persona-overlay');
+        const mainCta = this.querySelector('.hero-main-cta');
         const pathPrefix = this.getPathPrefix();
 
         zones.forEach(zone => {
@@ -161,16 +213,25 @@ class HomeHero extends HTMLElement {
                 }
             });
 
+            // Hover interactions
             zone.addEventListener('mouseenter', () => {
                 const persona = zone.getAttribute('data-persona');
                 const targetOverlay = this.querySelector(`#overlay-${persona}`);
                 if (targetOverlay) {
                     targetOverlay.classList.add('active');
                 }
+                if (mainCta) {
+                    mainCta.style.opacity = '0';
+                    mainCta.style.pointerEvents = 'none';
+                }
             });
 
             zone.addEventListener('mouseleave', () => {
                 overlays.forEach(o => o.classList.remove('active'));
+                if (mainCta) {
+                    mainCta.style.opacity = '1';
+                    mainCta.style.pointerEvents = 'auto';
+                }
             });
         });
     }

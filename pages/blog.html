@@ -7,24 +7,27 @@
     <meta name="description" content="Insights on product engineering, system architecture, and building premium web apps.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     
     <!-- Supabase Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <!-- Component Scripts -->
-    <script src="../components/nav.js" defer></script>
+    <script src="../scripts/glass-surface.js" defer></script><script src="../components/nav.js" defer></script>
     <script src="../components/footer.js" defer></script>
     <style>
         :root {
-            --bg-cream: #f1ede1;
-            --text-dark: #000;
-            --accent-lime: #c7ebae;
+            --bg-cream: #F6F8F1;
+            --text-dark: #222222;
+            --accent-lime: #3F8F2D;
         }
         body {
             margin: 0;
             background-color: var(--bg-cream);
+            background-image: linear-gradient(135deg, #B7D98A 0%, #8CCB59 50%, #3F8F2D 100%);
+            background-attachment: fixed;
+            background-size: cover;
             color: var(--text-dark);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
@@ -35,22 +38,27 @@
         }
         .blog-header-label {
             display: inline-block;
-            background-color: var(--accent-lime);
-            padding: 8px 20px;
+            background-color: rgba(63, 143, 45, 0.12);
+            color: var(--accent-lime);
+            padding: 6px 20px;
             border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
+            font-family: var(--font-script);
+            font-size: 1.45rem;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: normal;
+            margin-bottom: 24px;
+            border: 1px solid rgba(63, 143, 45, 0.2);
         }
         .blog-header-title {
-            font-family: 'Fraunces', serif;
+            font-family: var(--font-display);
             font-size: clamp(3rem, 8vw, 6rem);
             line-height: 1;
             margin-bottom: 30px;
             font-weight: 900;
-            letter-spacing: -1px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: var(--accent-lime);
         }
         .blog-grid {
             max-width: 1400px;
@@ -61,16 +69,20 @@
             gap: 40px;
         }
         .blog-card {
-            background: #fff;
+            background: var(--glass-bg);
             border-radius: 24px;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: var(--glass-shadow);
             transition: transform 0.4s ease;
             text-decoration: none;
             color: inherit;
         }
         .blog-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(30, 77, 18, 0.12);
         }
         .blog-card-img {
             width: 100%;
@@ -81,14 +93,15 @@
             padding: 30px;
         }
         .blog-card-title {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-display);
             font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 15px;
             line-height: 1.2;
+            color: var(--bg-dark);
         }
         .blog-card-excerpt {
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 20px;
             line-height: 1.5;
         }

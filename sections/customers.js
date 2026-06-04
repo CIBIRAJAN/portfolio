@@ -15,22 +15,85 @@ class CustomerReviews extends HTMLElement {
     }
 
     async connectedCallback() {
-        this.renderLoading();
+        let reviews = null;
+        try {
+            const cached = localStorage.getItem('portfolio_reviews');
+            if (cached) {
+                reviews = JSON.parse(cached);
+            }
+        } catch (e) {}
+
+        if (reviews && reviews.length > 0) {
+            this.render(reviews);
+        } else {
+            // Render default fallbacks immediately
+            reviews = this.getFallbackReviews();
+            this.render(reviews);
+        }
         
         try {
             await this.waitForSupabase();
             
-            const { data: reviews, error } = await this.supabase
+            const { data: remoteReviews, error } = await this.supabase
                 .from('customers')
                 .select('*')
                 .order('created_at', { ascending: true });
 
             if (error) throw error;
-            this.render(reviews);
+            
+            if (remoteReviews && remoteReviews.length > 0) {
+                const dataChanged = JSON.stringify(reviews) !== JSON.stringify(remoteReviews);
+                if (dataChanged) {
+                    this.render(remoteReviews);
+                    try {
+                        localStorage.setItem('portfolio_reviews', JSON.stringify(remoteReviews));
+                    } catch (e) {}
+                }
+            }
         } catch (error) {
-            console.error('Failed to load customers from Supabase:', error);
-            this.render([]); // Render empty or static fallback
+            console.error('Failed to load customers from Supabase in background:', error);
         }
+    }
+
+    getFallbackReviews() {
+        return [
+            {
+                name: "Sarah Jenkins",
+                role: "CEO, BloomCell",
+                review: "Cibirajan's ability to translate complex logic into seamless UI is unmatched. He didn't just build the app; he refined our entire product strategy.",
+                avatar: "https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/portfolio/avatars/avatar-1.png",
+                rating: 5,
+                bg_class: "bg-lime",
+                tilt_class: "tilt-left"
+            },
+            {
+                name: "Arjun Mehta",
+                role: "CTO, Webiz",
+                review: "A rare engineer who understands business goals. The Edge Functions we implemented are handling 50k+ daily calls without a hitch.",
+                avatar: "https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/portfolio/avatars/avatar-2.png",
+                rating: 5,
+                bg_class: "bg-dark",
+                tilt_class: "tilt-right"
+            },
+            {
+                name: "Elena Rodriguez",
+                role: "VP Product, Nexus",
+                review: "The dashboard he designed is hands down the best internal tool we've ever used. Clean, intuitive, and incredibly fast.",
+                avatar: "https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/portfolio/avatars/avatar-3.png",
+                rating: 5,
+                bg_class: "bg-cream",
+                tilt_class: "tilt-left"
+            },
+            {
+                name: "Chen Wei",
+                role: "Lead Engineer, FlowOps",
+                review: "From design to deployment, the process was seamless. Cibirajan takes ownership of everything he touches.",
+                avatar: "https://kfcqfaqkxbsvjatzjxfd.supabase.co/storage/v1/object/public/portfolio/avatars/avatar-4.png",
+                rating: 5,
+                bg_class: "bg-lime",
+                tilt_class: "tilt-right"
+            }
+        ];
     }
 
     async waitForSupabase() {
@@ -51,31 +114,35 @@ class CustomerReviews extends HTMLElement {
     }
 
     renderLoading() {
-        this.innerHTML = `
-            <section class="section section-customers" id="customers">
-                <div class="section-header text-center">
-                    <span class="section-label">🤝 Collaboration</span>
-                    <h2 class="section-title">Our Happy Customers</h2>
-                    <p class="section-subtitle">Loading reviews...</p>
-                </div>
-            </section>
-        `;
+        // Kept for backward compatibility
     }
 
     render(reviews) {
         const pathPrefix = this.getPathPrefix ? this.getPathPrefix() : '';
+        const getGlassProps = (bgClass) => {
+            if (bgClass === 'bg-lime') {
+                return 'background-opacity="0.55" brightness="92" saturation="1.5"';
+            } else if (bgClass === 'bg-dark') {
+                return 'background-opacity="0.85" brightness="25" saturation="1.1"';
+            } else {
+                return 'background-opacity="0.45" brightness="85" saturation="1.3"';
+            }
+        };
+
         const reviewCards = reviews.map(review => `
-            <div class="customer-card ${review.tilt_class} ${review.bg_class}">
-                <div class="rating">${'★'.repeat(review.rating)}</div>
-                <p class="review-text">"${review.review}"</p>
-                <div class="customer-meta">
-                    <img src="${review.avatar.startsWith('http') ? review.avatar : pathPrefix + review.avatar}" alt="${review.name}" class="customer-avatar">
-                    <div>
-                        <div class="customer-name">${review.name}</div>
-                        <div class="customer-role">${review.role}</div>
+            <glass-surface class="customer-card ${review.tilt_class}" border-radius="32" width="450" height="auto" ${getGlassProps(review.bg_class)}>
+                <div style="padding: 30px; box-sizing: border-box; width: 100%; text-align: left;">
+                    <div class="rating" style="color: var(--accent-gold); margin-bottom: 20px; font-size: 1rem; letter-spacing: 2px;">${'★'.repeat(review.rating)}</div>
+                    <p class="review-text" style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 24px; color: var(--text-primary);">"${review.review}"</p>
+                    <div class="customer-meta" style="display: flex; align-items: center; gap: 16px;">
+                        <img src="${review.avatar.startsWith('http') ? review.avatar : pathPrefix + review.avatar}" alt="${review.name}" class="customer-avatar" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(255, 255, 255, 0.1);">
+                        <div>
+                            <div class="customer-name" style="font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--text-primary);">${review.name}</div>
+                            <div class="customer-role" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">${review.role}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </glass-surface>
         `).join('');
 
         this.innerHTML = `

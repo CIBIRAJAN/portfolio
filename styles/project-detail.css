@@ -1,14 +1,27 @@
 /* Project Detail Styling */
 :root {
-    --bg-dark: #050505;
+    --bg-cream: #F6F8F1; /* Off White Card */
+    --bg-dark: #1E4D12; /* Dark Green headings base */
+    --bg-midnight: #12330a;
     --text-white: #ffffff;
-    --text-dim: #a0a0a0;
-    --accent-lime: #D2F171;
+    --text-dim: #666666;
+    --accent-lime: #3F8F2D; /* Primary Green */
+    --accent-gold: #69B63D; /* Accent Green */
+    --accent-light: rgba(63, 143, 45, 0.08);
+
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 16px 45px rgba(30, 77, 18, 0.08);
+    --glass-blur: blur(20px);
 }
 
 body.project-page {
-    background: var(--bg-dark);
-    color: var(--text-white);
+    background-color: var(--bg-cream);
+    background-image: linear-gradient(135deg, #B7D98A 0%, #8CCB59 50%, #3F8F2D 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
 }

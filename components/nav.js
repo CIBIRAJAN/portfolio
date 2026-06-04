@@ -16,7 +16,18 @@ class GlobalNav extends HTMLElement {
         this.innerHTML = `
             <nav class="nav">
                 <div class="nav-container">
-                    <div class="nav-logo">CIBIRAJAN</div>
+                    <a href="${pathPrefix}index.html" class="nav-brand">
+                        <div class="nav-logo-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+                                <path d="M25 45 C15 45, 10 30, 25 25 C30 10, 55 10, 60 25 C75 25, 80 45, 65 50 C60 55, 45 55, 40 50 Z" fill="#69B63D" fill-opacity="0.2" stroke="#69B63D" stroke-width="3" stroke-linejoin="round"/>
+                                <path d="M50 35 L50 85 M50 35 L20 60 M50 35 L80 60" stroke="#69B63D" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="20" cy="75" r="10" stroke="#69B63D" stroke-width="2"/>
+                                <circle cx="80" cy="75" r="10" stroke="#69B63D" stroke-width="2"/>
+                                <path d="M10 70 L30 70 M70 70 L90 70" stroke="#69B63D" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="nav-logo-text">CIBIRAJAN</span>
+                    </a>
                     <div class="nav-menu">
                         <a href="${pathPrefix}index.html#hero" class="nav-btn-pill" data-page="home">HOME</a>
                         <a href="${pathPrefix}index.html#projects" class="nav-btn-pill" data-page="projects">PROJECTS</a>

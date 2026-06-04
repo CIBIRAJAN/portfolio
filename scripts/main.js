@@ -1,5 +1,5 @@
 /* ============================================
-   CIBIRAJAN VISVANATHAN — CLOSEFUTURE THEME
+   CIBIRAJAN VISVANATHAN — CLEAN EMERALD THEME
    JavaScript — Interactions & Smooth Dynamics
    ============================================ */
 
@@ -72,13 +72,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Apply reveal to all sections
-    document.querySelectorAll('.section-header, .project-card, .philosophy-card, .timeline-item').forEach(el => {
+    // Apply reveal to sections (but NOT project cards — they have their own system)
+    document.querySelectorAll('.section-header, .philosophy-card, .timeline-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 1s cubic-bezier(0.16, 1, 0.3, 1)';
         revealObserver.observe(el);
     });
+
+    // ===== Projects Showcase Reveal Animation =====
+    const showcase = document.querySelector('project-showcase');
+    if (showcase) {
+        const showcaseObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    showcaseObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+        showcaseObserver.observe(showcase);
+    }
 
     // ===== Animated Number Counter =====
     const counterObserver = new IntersectionObserver((entries) => {
@@ -150,5 +164,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Note: Customer swipe logic is now handled within the <customer-reviews> component.
 
     // ===== Console Signature =====
-    console.log('%c Designed with ❤️ by Cibirajan V ', 'background: #D2F171; color: #000; font-weight: bold; border-radius: 4px; padding: 4px;');
+    console.log('%c Designed with ❤️ by Cibirajan V ', 'background: #2D8B4E; color: #fff; font-weight: bold; border-radius: 4px; padding: 4px;');
 });

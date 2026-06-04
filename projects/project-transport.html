@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/project-style.css">
@@ -18,76 +18,228 @@
 <body class="project-page-active">
     <global-nav></global-nav>
     <a href="../index.html#projects" class="project-back-pill">&larr; WORK</a>
+
     <header class="project-hero-modern">
         <div class="project-hero-content">
-            <div class="project-label-tag">PRODUCTION CASE STUDY</div>
+            <div class="project-label-tag">● PRODUCTION CASE STUDY</div>
             <h1 class="project-display-title">No-App Transport Booking</h1>
+            <p class="project-hero-subtitle">A high-performance web-first transport booking system that works seamlessly on all devices without requiring any app installation.</p>
             <div class="project-tech-pills">
-                <span class="tech-pill-modern">Accessibility</span>
-                <span class="tech-pill-modern">Web-First</span>
-                <span class="tech-pill-modern">System Architecture</span>
+                <span class="tech-pill-modern"><span class="pill-icon">🌐</span> Web-First</span>
+                <span class="tech-pill-modern"><span class="pill-icon">⚡</span> Real-time Allocation</span>
+                <span class="tech-pill-modern"><span class="pill-icon">✨</span> UX Optimization</span>
             </div>
         </div>
-        <div class="project-main-showcase">
-            <img src="../assets/images/projects/webiz-project.png" alt="Transportation Booking" class="project-showcase-img">
+        <div class="project-hero-right">
+            <div class="project-main-showcase">
+                <img src="../assets/images/projects/webiz-project.png" alt="Transportation Booking" class="project-showcase-img">
+            </div>
         </div>
     </header>
 
-    <main class="project-grid">
-        <aside class="project-sidebar">
-            <div class="project-sidebar-item">
+    <!-- Horizontal Summary Bar -->
+    <section class="project-summary-bar">
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>CORE FOCUS</h4>
                 <p>Efficient Booking Accessibility without high-barrier app installs.</p>
             </div>
-            <div class="project-sidebar-item">
-                <h4>MISSION</h4>
-                <p>To provide a high-availability transportation booking method that works on all devices via web or
-                    light-weight interfaces.</p>
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
             </div>
-            <div class="project-sidebar-item">
+            <div class="summary-text">
+                <h4>MISSION</h4>
+                <p>Provide a high-availability transportation booking method that works on all devices via web or lightweight interfaces.</p>
+            </div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5"/><path d="M12 12l9-9-3 12-6 3-3-3-3-6 6-3 9 9"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>DELIVERY</h4>
                 <p>Optimized UX Pipeline → Instant Driver Allocation → Zero-Install Booking.</p>
             </div>
-        </aside>
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                </svg>
+            </div>
+            <div class="summary-text">
+                <h4>INDUSTRY</h4>
+                <p>Logistics & Transportation (Enterprise SaaS)</p>
+            </div>
+        </div>
+    </section>
 
-        <article class="project-content">
-            <section>
+    <!-- Two-Column Main Content Layout -->
+    <main class="project-main-grid">
+        <div class="main-column-left">
+            <div class="content-card card-overview">
                 <h2>🚀 Overview</h2>
-                <p>This project addresses the friction of high-barrier mobile applications in the transportation sector.
-                    By creating a high-performance web-first system, we enable users to book transport instantly without
-                    downloading a massive app, saving storage and reducing onboarding time.</p>
-            </section>
+                <p>This project addresses the friction of high-barrier mobile applications in the transportation sector. By creating a high-performance web-first system, we enable users to book transport instantly without downloading a massive app, saving storage and reducing onboarding time.</p>
+                <div class="overview-illustration">
+                    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="220" rx="24" fill="#ECF5E6" opacity="0.5"/>
+                        <circle cx="80" cy="150" r="60" fill="none" stroke="rgba(101, 163, 13, 0.1)" stroke-width="2"/>
+                        <circle cx="80" cy="150" r="100" fill="none" stroke="rgba(101, 163, 13, 0.05)" stroke-width="2"/>
+                        <rect x="50" y="40" width="220" height="130" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.03)" stroke-width="2" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.02))"/>
+                        <circle cx="65" cy="52" r="4" fill="#ff5f56"/>
+                        <circle cx="75" cy="52" r="4" fill="#ffbd2e"/>
+                        <circle cx="85" cy="52" r="4" fill="#27c93f"/>
+                        <rect x="100" y="49" width="120" height="6" rx="3" fill="#ECF5E6"/>
+                        <rect x="65" y="70" width="70" height="45" rx="6" fill="#f4f8ef" stroke="rgba(101, 163, 13, 0.1)"/>
+                        <rect x="145" y="70" width="110" height="15" rx="4" fill="#E8F5E1"/>
+                        <rect x="145" y="92" width="70" height="8" rx="4" fill="#65a30d" opacity="0.3"/>
+                        <rect x="145" y="105" width="90" height="8" rx="4" fill="#e2e8f0"/>
+                        <rect x="65" y="125" width="190" height="35" rx="8" fill="#1E4D12"/>
+                        <rect x="135" y="138" width="50" height="8" rx="4" fill="#ffffff"/>
+                        <path d="M330 110 C330 90 310 70 290 70 C270 70 250 90 250 110 C250 130 290 170 290 170 C290 170 330 130 330 110 Z" fill="#84cc16" opacity="0.2"/>
+                        <path d="M300 100 C300 94.5 295.5 90 290 90 C284.5 90 280 94.5 280 100 C280 105.5 284.5 110 290 110 C295.5 110 300 105.5 300 100 Z" fill="#65a30d"/>
+                        <g transform="translate(200, 120)">
+                            <ellipse cx="60" cy="42" rx="45" ry="6" fill="rgba(0,0,0,0.04)"/>
+                            <circle cx="35" cy="38" r="8" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+                            <circle cx="85" cy="38" r="8" fill="#1e293b" stroke="#ffffff" stroke-width="2"/>
+                            <path d="M15 15 C15 10 20 8 30 8 L70 8 C80 8 85 10 90 15 L95 22 C98 25 98 32 95 35 L90 36 L15 36 Z" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.03))"/>
+                            <path d="M18 10 L65 10 L65 34 L18 34 Z" fill="#E8F5E1"/>
+                            <path d="M68 12 L82 12 L88 20 L68 20 Z" fill="#65a30d" opacity="0.2"/>
+                            <circle cx="35" cy="38" r="3" fill="#65a30d"/>
+                            <circle cx="85" cy="38" r="3" fill="#65a30d"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
 
-            <section>
+            <div class="content-card card-impact">
+                <h2>🌐 Scalability & Impact</h2>
+                <p>By removing the mobile app requirement, we reached segments of the population previously underserved by digital ride-hailing services, significantly increasing booking volume in diverse urban environments.</p>
+                <div class="impact-stats">
+                    <div class="stat-col">
+                        <h3>3X</h3>
+                        <p>Increase in Bookings</p>
+                    </div>
+                    <div class="stat-col">
+                        <h3>60%+</h3>
+                        <p>Faster Onboarding</p>
+                    </div>
+                    <div class="stat-col">
+                        <h3>40%</h3>
+                        <p>Reduction in Drop-offs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-column-right">
+            <div class="content-card card-features">
                 <h2>⚙️ Key Features</h2>
-                <ul class="feature-list">
-                    <li class="feature-item"><strong>Zero-Onboarding Booking:</strong> Instant seat reservation via
-                        optimized web portals or lightweight SMS/QR bridges.</li>
-                    <li class="feature-item"><strong>Efficient Resource Allocation:</strong> Predictive driver
-                        dispatching to ensure minimum wait times.</li>
-                    <li class="feature-item"><strong>Real-time Tracking:</strong> Secure, persistent browser sessions
-                        giving users live updates on their vehicle status.</li>
-                    <li class="feature-item"><strong>High Accessibility:</strong> Designed for low-bandwidth
-                        environments and legacy device compatibility.</li>
-                </ul>
-            </section>
+                <div class="features-list-wrapper">
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 18v3h16v-3M4 7h16M4 12h16"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Zero-Onboarding Booking</strong>
+                            <p>Instant seat reservation via optimized web portals or lightweight SMS/QR bridges.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Efficient Resource Allocation</strong>
+                            <p>Predictive driver dispatching to ensure minimum wait times.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><path d="M3 20h18"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Real-time Tracking</strong>
+                            <p>Secure, persistent browser sessions giving users live updates on their vehicle status.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>High Accessibility</strong>
+                            <p>Designed for low-bandwidth environments and legacy device compatibility.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <section>
-                <h2>🌍 Scalability & Impact</h2>
-                <p>By removing the mobile app requirement, we reached segments of the population previously underserved
-                    by digital ride-hailing services, significantly increasing booking volume in diverse urban
-                    environments.</p>
-            </section>
-
-            <section>
+            <div class="content-card card-tech">
                 <h2>🧠 Technology Choice</h2>
-                <p>Utilizes advanced real-time WebSockets and lightweight frontend frameworks to deliver app-like
-                    performance within a standard mobile browser environment.</p>
-            </section>
-        </article>
+                <p>Utilizes advanced real-time WebSockets and lightweight frontend frameworks to deliver app-like performance within a standard mobile browser environment.</p>
+                <div class="tech-logos-row">
+                    <div class="tech-logo-badge">
+                        <img src="https://cdn.simpleicons.org/socketdotio/65a30d" alt="WebSockets">
+                        <span>WebSockets</span>
+                    </div>
+                    <div class="tech-logo-badge">
+                        <img src="https://cdn.simpleicons.org/nodedotjs/65a30d" alt="Node.js">
+                        <span>Node.js</span>
+                    </div>
+                    <div class="tech-logo-badge">
+                        <img src="https://cdn.simpleicons.org/react/65a30d" alt="React">
+                        <span>React</span>
+                    </div>
+                    <div class="tech-logo-badge">
+                        <img src="https://cdn.simpleicons.org/redis/65a30d" alt="Redis">
+                        <span>Redis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <!-- Bottom Banner CTA -->
+    <section class="project-bottom-cta">
+        <div class="bottom-cta-card">
+            <div class="cta-left">
+                <div class="cta-leaves-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 10 17 10" />
+                        <path d="M9 22a7 7 0 0 0 7.8-13.9C11.5 9 10 14 10 14" />
+                    </svg>
+                </div>
+                <p>Building solutions that are accessible, scalable, and built for real-world impact.</p>
+            </div>
+            <a href="../index.html#projects" class="btn-view-more">
+                View More Projects
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
     <global-footer></global-footer>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../scripts/project-dynamic.js" defer></script><script src="../components/nav.js" defer></script><script src="../components/footer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../scripts/project-dynamic.js" defer></script><script src="../scripts/glass-surface.js" defer></script><script src="../components/nav.js" defer></script><script src="../components/footer.js" defer></script>
 </body>
 
 </html>

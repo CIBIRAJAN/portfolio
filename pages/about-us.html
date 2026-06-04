@@ -24,17 +24,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     
     <!-- Component Scripts -->
-    <script src="../components/nav.js" defer></script>
+    <script src="../scripts/glass-surface.js?v=2" defer></script><script src="../components/nav.js" defer></script>
     <script src="../components/footer.js" defer></script>
     <style>
         /* Special About Us Identity Styling */
         .id-page-active {
             background-color: var(--bg-cream);
+            background-image: linear-gradient(135deg, #B7D98A 0%, #8CCB59 50%, #3F8F2D 100%);
+            background-attachment: fixed;
+            background-size: cover;
             color: var(--text-primary);
             padding-top: 100px;
             min-height: 100vh;
@@ -201,16 +204,20 @@
         }
 
         .id-stat-box {
-            background: #ffffff;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             padding: 40px;
             border-radius: var(--radius-medium);
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
             transition: var(--transition-smooth);
         }
 
         .id-stat-box:hover {
             transform: translateY(-10px);
             border-color: var(--accent-lime);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.15);
         }
 
         .id-stat-num {
@@ -238,51 +245,235 @@
         }
 
         .id-timeline-grid {
+            position: relative;
             margin-top: 60px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 48px;
+        }
+
+        .id-timeline-grid::before {
+            content: '';
+            position: absolute;
+            left: 220px; /* Center of the 80px wide node column (180px left + 40px half of node column) */
+            top: 40px;
+            bottom: 40px;
+            width: 2px;
+            background-color: var(--accent-lime);
+            z-index: 1;
+            opacity: 0.6;
         }
 
         .id-timeline-item {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            align-items: start;
-            gap: 40px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: var(--radius-medium);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-            transition: var(--transition-smooth);
+            grid-template-columns: 180px 80px 1fr;
+            align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
-        .id-timeline-item:hover {
-            background: #ffffff;
-            border-color: var(--accent-lime);
+        .id-timeline-left {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
         }
 
         .id-year {
             font-family: var(--font-display);
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 950;
             color: var(--accent-lime);
             line-height: 1;
+            margin-bottom: 6px;
         }
 
-        .id-milestone h3 {
+        .id-year-sub {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .id-year-line {
+            width: 32px;
+            height: 2px;
+            background-color: var(--accent-lime);
+            opacity: 0.6;
+        }
+
+        .id-timeline-node {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 100%;
+        }
+
+        .id-node-circle {
+            width: 48px;
+            height: 48px;
+            background-color: #ffffff;
+            border: 2px solid var(--accent-lime);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            box-shadow: 0 4px 12px rgba(63, 143, 45, 0.15);
+            transition: var(--transition-smooth);
+        }
+
+        .id-timeline-item:hover .id-node-circle {
+            transform: scale(1.1);
+            background-color: var(--accent-lime);
+            color: #ffffff;
+        }
+
+        .id-node-circle svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent-lime);
+            transition: var(--transition-smooth);
+        }
+
+        .id-timeline-item:hover .id-node-circle svg {
+            color: #ffffff;
+        }
+
+        .id-timeline-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 36px 48px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-medium);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition-smooth);
+            gap: 32px;
+        }
+
+        .id-timeline-card:hover {
+            background: rgba(255, 255, 255, 0.65);
+            border-color: var(--accent-lime);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(63, 143, 45, 0.12);
+        }
+
+        .id-card-content {
+            flex: 1;
+        }
+
+        .id-card-content h3 {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 850;
             margin-bottom: 12px;
             color: var(--text-primary);
         }
 
-        .id-milestone p {
+        .id-card-content p {
             font-family: var(--font-body);
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--text-muted);
-            max-width: 800px;
+        }
+
+        .id-card-illustration {
+            width: 130px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .illustration-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Timeline Quote Box */
+        .timeline-quote-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 56px;
+        }
+
+        .timeline-quote-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 32px;
+            background-color: rgba(63, 143, 45, 0.08);
+            border: 1px solid rgba(63, 143, 45, 0.15);
+            border-radius: var(--radius-full);
+            max-width: fit-content;
+        }
+
+        .quote-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: var(--accent-lime);
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            font-family: var(--font-display);
+            font-weight: 800;
+            line-height: 1;
+            padding-top: 4px;
+        }
+
+        .quote-text {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 992px) {
+            .id-timeline-grid::before {
+                display: none;
+            }
+
+            .id-timeline-item {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .id-timeline-left {
+                text-align: left;
+                align-items: flex-start;
+            }
+
+            .id-year-line {
+                display: none;
+            }
+
+            .id-timeline-node {
+                display: none;
+            }
+
+            .id-timeline-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 28px;
+                gap: 20px;
+            }
+
+            .id-card-illustration {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
         }
 
         /* Resume Previewer CSS */
@@ -298,10 +489,10 @@
             max-width: 1200px;
             height: 900px;
             margin: 0 auto;
-            background: #ffffff;
+            background: var(--bg-dark);
             border-radius: var(--radius-large);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
             overflow: hidden;
             position: relative;
         }
@@ -429,7 +620,7 @@
             }
 
             .identity-resume-card {
-                background: #0d1b0d;
+                background: var(--bg-dark);
                 /* Elite Dark Background */
                 width: 90%;
                 max-width: 400px;
@@ -580,32 +771,131 @@
             <div class="section-header">
                 <span class="section-label">🏛️ Milestones</span>
                 <h2 class="section-title">Technical Odyssey</h2>
+                <p class="section-subtitle" style="margin-top: 12px; font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto; font-family: var(--font-body);">Key moments that shaped my journey and technical evolution.</p>
             </div>
 
             <div class="id-timeline-grid">
+                <!-- Item 1 (2021) -->
                 <div class="id-timeline-item">
-                    <div class="id-year">2021</div>
-                    <div class="id-milestone">
-                        <h3>Foundation & First Lines</h3>
-                        <p>Commenced B.Tech in Artificial Intelligence & Machine Learning. Immersed in Python, C, and
-                            the mathematical primitives of modern software architecture.</p>
+                    <div class="id-timeline-left">
+                        <div class="id-year">2021</div>
+                        <div class="id-year-sub">The Beginning</div>
+                        <div class="id-year-line"></div>
+                    </div>
+                    <div class="id-timeline-node">
+                        <div class="id-node-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22V12"></path>
+                                <path d="M12 12C12 7.5 8.5 4 4 4C4 8.5 7.5 12 12 12Z"></path>
+                                <path d="M12 14C12 10.5 15.5 7 20 7C20 10.5 16.5 14 12 14Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="id-timeline-card">
+                        <div class="id-card-content">
+                            <h3>Foundation & First Lines</h3>
+                            <p>Commenced B.Tech in Artificial Intelligence & Machine Learning. Immersed in Python, C, and the mathematical primitives of modern software architecture.</p>
+                        </div>
+                        <div class="id-card-illustration">
+                            <svg class="illustration-svg" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="90" cy="50" r="35" fill="rgba(63, 143, 45, 0.06)" />
+                                <rect x="25" y="20" width="70" height="46" rx="4" stroke="#3F8F2D" stroke-width="2" fill="rgba(255, 255, 255, 0.6)" />
+                                <path d="M15 66H105C108 66 110 68 110 71V73H10V71C10 68 12 66 15 66Z" stroke="#3F8F2D" stroke-width="2" fill="rgba(255, 255, 255, 0.8)" />
+                                <line x1="53" y1="70" x2="67" y2="70" stroke="#3F8F2D" stroke-width="1.5" />
+                                <path d="M47 37L40 43L47 49" stroke="#3F8F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M73 37L80 43L73 49" stroke="#3F8F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <line x1="63" y1="36" x2="57" y2="50" stroke="#3F8F2D" stroke-width="2" stroke-linecap="round" />
+                                <rect x="95" y="55" width="16" height="16" rx="2" stroke="#3F8F2D" stroke-dasharray="2 2" stroke-width="1.5" fill="none" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Item 2 (2024) -->
                 <div class="id-timeline-item">
-                    <div class="id-year">2024</div>
-                    <div class="id-milestone">
-                        <h3>Architecture Expansion</h3>
-                        <p>Transitioned into building production-ready CRM systems and high-concurrency Node.js
-                            backends. Achieved expertise in Supabase, Flutter, and serverless edge computing.</p>
+                    <div class="id-timeline-left">
+                        <div class="id-year">2024</div>
+                        <div class="id-year-sub">Scaling Up</div>
+                        <div class="id-year-line"></div>
+                    </div>
+                    <div class="id-timeline-node">
+                        <div class="id-node-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="id-timeline-card">
+                        <div class="id-card-content">
+                            <h3>Architecture Expansion</h3>
+                            <p>Transitioned into building production-ready CRM systems and high-concurrency Node.js backends. Achieved expertise in Supabase, Flutter, and serverless edge computing.</p>
+                        </div>
+                        <div class="id-card-illustration">
+                            <svg class="illustration-svg" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="70" cy="50" r="35" fill="rgba(63, 143, 45, 0.06)" />
+                                <path d="M45 42C45 33.7 51.7 27 60 27C66.2 27 71.5 30.8 73.8 36.2C75.8 34.8 78.3 34 81 34C87.6 34 93 39.4 93 46C93 46.7 92.9 47.4 92.8 48.1C97.4 49.3 101 53.5 101 58.5C101 64.3 96.3 69 90.5 69H55V69" stroke="#3F8F2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255, 255, 255, 0.5)" />
+                                <path d="M102 68C102 70.8 111.4 73 123 73C134.6 73 144 70.8 144 68V58C144 60.8 134.6 63 123 63C111.4 63 102 60.8 102 58V68Z" stroke="#3F8F2D" stroke-width="2" fill="rgba(255, 255, 255, 0.8)" />
+                                <path d="M102 55C102 57.8 111.4 60 123 60C134.6 60 144 57.8 144 55V45C144 47.8 134.6 50 123 50C111.4 50 102 47.8 102 45V55Z" stroke="#3F8F2D" stroke-width="2" fill="rgba(255, 255, 255, 0.8)" />
+                                <path d="M102 42C102 44.8 111.4 47 123 47C134.6 47 144 44.8 144 42C144 39.2 134.6 37 123 37C111.4 37 102 39.2 102 42Z" stroke="#3F8F2D" stroke-width="2" fill="rgba(255, 255, 255, 0.8)" />
+                                <path d="M102 42C102 44.8 111.4 47 123 47C134.6 47 144 44.8 144 42" stroke="#3F8F2D" stroke-width="2" />
+                                <circle cx="35" cy="65" r="4" stroke="#3F8F2D" stroke-width="1.5" fill="#ffffff" />
+                                <circle cx="65" cy="65" r="4" stroke="#3F8F2D" stroke-width="1.5" fill="#ffffff" />
+                                <path d="M35 61V58H102" stroke="#3F8F2D" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M65 61V65" stroke="#3F8F2D" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Item 3 (2025) -->
                 <div class="id-timeline-item">
-                    <div class="id-year">2025</div>
-                    <div class="id-milestone">
-                        <h3>Engineering @ CloseFuture</h3>
-                        <p>Joining the elite product team at CloseFuture to ship high-stakes digital experiences.
-                            Focused on bridging the gap between complex logic and premium UI/UX.</p>
+                    <div class="id-timeline-left">
+                        <div class="id-year">2025</div>
+                        <div class="id-year-sub">Where I Build Now</div>
+                        <div class="id-year-line"></div>
                     </div>
+                    <div class="id-timeline-node">
+                        <div class="id-node-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5"></path>
+                                <path d="M12 12l9-9-3 12-6 3-3-3-3-6 6-3 9 9"></path>
+                                <path d="M9 15l3 3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="id-timeline-card">
+                        <div class="id-card-content">
+                            <h3>Engineering @ CloseFuture</h3>
+                            <p>Joining the elite product team at CloseFuture to ship high-stakes digital experiences. Focused on bridging the gap between complex logic and premium UI/UX.</p>
+                        </div>
+                        <div class="id-card-illustration">
+                            <svg class="illustration-svg" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="60" cy="55" r="35" fill="rgba(63, 143, 45, 0.06)" />
+                                <circle cx="60" cy="55" r="32" stroke="#3F8F2D" stroke-dasharray="2 2" stroke-width="1.2" />
+                                <circle cx="60" cy="55" r="24" stroke="#3F8F2D" stroke-width="1.5" fill="rgba(255, 255, 255, 0.4)" />
+                                <circle cx="60" cy="55" r="14" stroke="#3F8F2D" stroke-width="1.5" />
+                                <circle cx="60" cy="55" r="5" stroke="#3F8F2D" stroke-width="1.5" fill="#3F8F2D" />
+                                <path d="M15 90L56 59" stroke="#3F8F2D" stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M51 55L57 57L55 63" stroke="#3F8F2D" stroke-width="2" stroke-linejoin="round" fill="#3F8F2D" />
+                                <path d="M15 90L22 83M18 93L25 86" stroke="#3F8F2D" stroke-width="2" />
+                                <line x1="110" y1="75" x2="140" y2="75" stroke="#3F8F2D" stroke-width="1.5" />
+                                <line x1="110" y1="45" x2="110" y2="75" stroke="#3F8F2D" stroke-width="1.5" />
+                                <rect x="114" y="60" width="4" height="15" rx="1" fill="#3F8F2D" opacity="0.6" stroke="#3F8F2D" stroke-width="1" />
+                                <rect x="122" y="52" width="4" height="23" rx="1" fill="#3F8F2D" opacity="0.8" stroke="#3F8F2D" stroke-width="1" />
+                                <rect x="130" y="44" width="4" height="31" rx="1" fill="#3F8F2D" stroke="#3F8F2D" stroke-width="1" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Quote Box -->
+            <div class="timeline-quote-container">
+                <div class="timeline-quote-box">
+                    <span class="quote-icon">“</span>
+                    <p class="quote-text">Every line of code is a step forward. Every milestone, a story in progress.</p>
                 </div>
             </div>
         </section>
