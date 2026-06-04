@@ -940,6 +940,62 @@
     </main>
 
     <global-footer></global-footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Load live resume from Supabase
+        (async function() {
+            const SUPABASE_URL = 'https://kfcqfaqkxbsvjatzjxfd.supabase.co';
+            const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs';
+            
+            const waitForSupabase = () => {
+                return new Promise((resolve) => {
+                    const check = () => {
+                        if (window.supabase) resolve();
+                        else setTimeout(check, 50);
+                    };
+                    check();
+                });
+            };
+            
+            try {
+                await waitForSupabase();
+                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                
+                // Fetch the live resume
+                const { data, error } = await supabase
+                    .from('resumes')
+                    .select('url')
+                    .eq('is_live', true)
+                    .limit(1);
+                    
+                if (error) throw error;
+                
+                if (data && data.length > 0 && data[0].url) {
+                    const liveResumeUrl = data[0].url;
+                    
+                    // Update download button in hero
+                    const downloadBtn = document.querySelector('a[download].nav-btn-pill');
+                    if (downloadBtn) {
+                        downloadBtn.href = liveResumeUrl;
+                    }
+                    
+                    // Update desktop iframe preview
+                    const iframeViewer = document.querySelector('.resume-viewer-iframe');
+                    if (iframeViewer) {
+                        iframeViewer.src = liveResumeUrl;
+                    }
+                    
+                    // Update mobile view button
+                    const mobileViewBtn = document.querySelector('.btn-resume-mobile');
+                    if (mobileViewBtn) {
+                        mobileViewBtn.href = liveResumeUrl;
+                    }
+                }
+            } catch (err) {
+                console.warn('Failed to load live resume:', err);
+            }
+        })();
+    </script>
     <script src="../scripts/main.js" defer></script>
 </body>
 

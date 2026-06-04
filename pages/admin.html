@@ -506,7 +506,8 @@
                 fields: [
                     { name: 'name', label: 'Resume Name (e.g. Cibirajan V Resume.pdf)', type: 'text' },
                     { name: 'url', label: 'Resume PDF Upload', type: 'file' },
-                    { name: 'version', label: 'Version', type: 'text' }
+                    { name: 'version', label: 'Version', type: 'text' },
+                    { name: 'is_live', label: 'Is Live Resume', type: 'boolean' }
                 ]
             }
         };
@@ -550,7 +551,8 @@
                     <div class="card-body">
                         <h3>${title}</h3>
                         <p class="card-subtitle">${sub}</p>
-                        ${currentTable === 'resumes' && item.version ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 15px;">Version: ${item.version}</div>` : ''}
+                        ${currentTable === 'resumes' && item.version ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Version: ${item.version}</div>` : ''}
+                        ${currentTable === 'resumes' && item.is_live ? `<div style="display: inline-block; align-self: flex-start; background: rgba(63,143,45,0.15); color: var(--accent-lime); font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Live</div>` : ''}
                     </div>
                     <div class="card-actions">
                         <button class="btn-action btn-edit" onclick="editItem('${item.id}')">Edit</button>
@@ -592,6 +594,16 @@
                             <div class="preview-container">
                                 ${previewHtml}
                             </div>
+                        </div>
+                    `;
+                }
+
+                if (field.type === 'boolean' || field.type === 'checkbox') {
+                    const isChecked = val === true ? 'checked' : '';
+                    return `
+                        <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px; margin-bottom: 24px;">
+                            <input type="checkbox" id="field-${field.name}" ${isChecked} style="width: auto; margin: 0; cursor: pointer;">
+                            <label for="field-${field.name}" style="margin: 0; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 700; display: inline-block;">${field.label}</label>
                         </div>
                     `;
                 }
@@ -674,11 +686,23 @@
                     if (field.type === 'image' || field.type === 'file') {
                         const newUrl = await uploadFile(field);
                         payload[field.name] = newUrl || document.getElementById(`field-${field.name}`).value;
+                    } else if (field.type === 'boolean' || field.type === 'checkbox') {
+                        payload[field.name] = document.getElementById(`field-${field.name}`).checked;
                     } else {
                         let val = document.getElementById(`field-${field.name}`).value;
                         if(field.name === 'tech') val = val.split(',').map(t => t.trim());
                         if(field.name === 'rating') val = parseInt(val) || 5;
                         payload[field.name] = val;
+                    }
+                }
+
+                if (currentTable === 'resumes' && payload.is_live === true) {
+                    // Turn off other live resumes to prevent unique index conflict
+                    const query = supabaseClient.from('resumes').update({ is_live: false });
+                    if (editingId) {
+                        await query.neq('id', editingId);
+                    } else {
+                        await query;
                     }
                 }
 
