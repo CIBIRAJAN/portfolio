@@ -406,6 +406,7 @@
             <div id="nav-footer_links" class="nav-item" onclick="switchTable('footer_links')">Footer Links</div>
             <div id="nav-section_images" class="nav-item" onclick="switchTable('section_images')">Section Images</div>
             <div id="nav-resumes" class="nav-item" onclick="switchTable('resumes')">Resumes</div>
+            <div id="nav-milestones" class="nav-item" onclick="switchTable('milestones')">Milestones</div>
             <div class="nav-item nav-logout" onclick="logout()">Logout</div>
         </div>
     </div>
@@ -509,6 +510,19 @@
                     { name: 'version', label: 'Version', type: 'text' },
                     { name: 'is_live', label: 'Is Live Resume', type: 'boolean' }
                 ]
+            },
+            milestones: {
+                title: 'Milestones',
+                storagePath: '',
+                fields: [
+                    { name: 'year', label: 'Year (e.g., 2021)', type: 'text' },
+                    { name: 'year_subtitle', label: 'Year Subtitle (e.g., The Beginning)', type: 'text' },
+                    { name: 'heading', label: 'Milestone Title (e.g., Foundation & First Lines)', type: 'text' },
+                    { name: 'description', label: 'Description', type: 'textarea' },
+                    { name: 'icon_svg', label: 'Icon SVG Code (Custom SVG paths/markup)', type: 'textarea' },
+                    { name: 'illustration_svg', label: 'Illustration SVG Code (Custom SVG paths/markup)', type: 'textarea' },
+                    { name: 'sort_order', label: 'Sort Order (Chronological number)', type: 'number' }
+                ]
             }
         };
 
@@ -521,7 +535,13 @@
         }
 
         async function fetchData() {
-            const { data, error } = await supabaseClient.from(currentTable).select('*').order('created_at', { ascending: false });
+            let query = supabaseClient.from(currentTable).select('*');
+            if (currentTable === 'milestones') {
+                query = query.order('sort_order', { ascending: true });
+            } else {
+                query = query.order('created_at', { ascending: false });
+            }
+            const { data, error } = await query;
             if (error) alert(error.message);
             currentData = data || [];
             renderGrid();
@@ -535,7 +555,9 @@
             }
             grid.innerHTML = currentData.map(item => {
                 const img = item.image || item.avatar || item.image_url || null;
-                const title = item.title || item.name || item.section_name || 'Untitled';
+                const title = currentTable === 'milestones'
+                    ? `${item.year} - ${item.heading}`
+                    : (item.title || item.name || item.section_name || 'Untitled');
                 const sub = item.description || item.review || item.excerpt || item.url || '';
                 
                 let previewHtml = '';
@@ -543,6 +565,8 @@
                     previewHtml = `<div class="card-image-preview"><img src="${img}" alt="Preview" onerror="this.parentElement.style.display='none'"></div>`;
                 } else if (currentTable === 'resumes' && item.url) {
                     previewHtml = `<div class="card-image-preview" style="display: flex; align-items: center; justify-content: center; background: rgba(63, 143, 45, 0.05); color: var(--accent-lime); font-size: 3rem;">📄</div>`;
+                } else if (currentTable === 'milestones') {
+                    previewHtml = `<div class="card-image-preview" style="display: flex; align-items: center; justify-content: center; background: rgba(63, 143, 45, 0.05); color: var(--accent-lime); font-size: 3rem;">🏛️</div>`;
                 }
                 
                 return `
@@ -553,6 +577,7 @@
                         <p class="card-subtitle">${sub}</p>
                         ${currentTable === 'resumes' && item.version ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Version: ${item.version}</div>` : ''}
                         ${currentTable === 'resumes' && item.is_live ? `<div style="display: inline-block; align-self: flex-start; background: rgba(63,143,45,0.15); color: var(--accent-lime); font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Live</div>` : ''}
+                        ${currentTable === 'milestones' ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Subtitle: ${item.year_subtitle} | Order: ${item.sort_order}</div>` : ''}
                     </div>
                     <div class="card-actions">
                         <button class="btn-action btn-edit" onclick="editItem('${item.id}')">Edit</button>
@@ -692,6 +717,7 @@
                         let val = document.getElementById(`field-${field.name}`).value;
                         if(field.name === 'tech') val = val.split(',').map(t => t.trim());
                         if(field.name === 'rating') val = parseInt(val) || 5;
+                        else if(field.type === 'number') val = parseInt(val) || 0;
                         payload[field.name] = val;
                     }
                 }
