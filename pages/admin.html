@@ -476,7 +476,9 @@
                     { name: 'image', label: 'Project Dashboard Image', type: 'image' },
                     { name: 'link', label: 'Project Link', type: 'text' },
                     { name: 'tech', label: 'Tech Stack (comma separated)', type: 'text' },
-                    { name: 'case_study_label', label: 'CTA Label', type: 'text' }
+                    { name: 'case_study_label', label: 'CTA Label', type: 'text' },
+                    { name: 'is_archive', label: 'Archive Project (Hide from Portfolio)', type: 'boolean' },
+                    { name: 'case_study_data', label: 'Case Study Details (JSON Format Template)', type: 'textarea' }
                 ]
             },
             customers: {
@@ -597,6 +599,7 @@
                         <p class="card-subtitle">${sub}</p>
                         ${currentTable === 'resumes' && item.version ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Version: ${item.version}</div>` : ''}
                         ${currentTable === 'resumes' && item.is_live ? `<div style="display: inline-block; align-self: flex-start; background: rgba(63,143,45,0.15); color: var(--accent-lime); font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Live</div>` : ''}
+                        ${currentTable === 'projects' && item.is_archive ? `<div style="display: inline-block; align-self: flex-start; background: rgba(217,56,56,0.15); color: #d93838; font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Archived</div>` : ''}
                         ${currentTable === 'milestones' ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Subtitle: ${item.year_subtitle} | Order: ${item.sort_order}</div>` : ''}
                     </div>
                     <div class="card-actions">
@@ -620,6 +623,43 @@
                 if(editingItem) {
                     val = editingItem[field.name];
                     if(field.name === 'tech' && Array.isArray(val)) val = val.join(', ');
+                    if(field.name === 'case_study_data' && val && typeof val === 'object') {
+                        val = JSON.stringify(val, null, 2);
+                    }
+                } else if(field.name === 'case_study_data') {
+                    val = JSON.stringify({
+                        "title_accent": "Case Study",
+                        "hero_subtitle": "A specialized platform built for high-performance operations, scalability, and impact.",
+                        "core_focus": "Technical Implementation",
+                        "mission": "To build robust and optimized client systems.",
+                        "delivery": "Design → Prototype → Deploy",
+                        "tech_stack_string": "HTML • CSS • JavaScript",
+                        "overview_text": "Overview of the project...",
+                        "overview_svg": "<svg viewBox=\"0 0 100 100\" style=\"width:100%; height:100%; max-height:120px;\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"var(--accent-lime)\" stroke-width=\"4\"/></svg>",
+                        "features": [
+                            {
+                                "icon": "settings",
+                                "title": "Feature Title",
+                                "desc": "Feature description goes here."
+                            }
+                        ],
+                        "impact_desc": "Impact description...",
+                        "impact_stats": [
+                            {
+                                "icon": "trending-up",
+                                "value": "100%",
+                                "label": "Metric Label"
+                            }
+                        ],
+                        "extra_card_title": "Scalability",
+                        "extra_card_text": "Details about scalability or system architecture...",
+                        "extra_stats": [
+                            {
+                                "value": "24/7",
+                                "label": "Uptime"
+                            }
+                        ]
+                    }, null, 2);
                 }
                 
                 if (field.type === 'image' || field.type === 'file') {
@@ -750,9 +790,20 @@
                         payload[field.name] = document.getElementById(`field-${field.name}`).checked;
                     } else {
                         let val = document.getElementById(`field-${field.name}`).value;
-                        if(field.name === 'tech') val = val.split(',').map(t => t.trim());
-                        if(field.name === 'rating') val = parseInt(val) || 5;
-                        else if(field.type === 'number') val = parseInt(val) || 0;
+                        if(field.name === 'tech') {
+                            val = val.split(',').map(t => t.trim());
+                        } else if(field.name === 'case_study_data') {
+                            const trimmed = val.trim();
+                            try {
+                                val = trimmed ? JSON.parse(trimmed) : null;
+                            } catch (e) {
+                                throw new Error('Invalid JSON format in Case Study Details: ' + e.message);
+                            }
+                        } else if(field.name === 'rating') {
+                            val = parseInt(val) || 5;
+                        } else if(field.type === 'number') {
+                            val = parseInt(val) || 0;
+                        }
                         payload[field.name] = val;
                     }
                 }

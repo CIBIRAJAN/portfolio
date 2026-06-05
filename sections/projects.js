@@ -23,7 +23,7 @@ class ProjectShowcase extends HTMLElement {
         try {
             cached = localStorage.getItem('portfolio_projects');
             if (cached) {
-                this.allProjects = JSON.parse(cached);
+                this.allProjects = JSON.parse(cached).filter(p => p.is_archive !== true);
                 this.render();
             }
         } catch (e) {}
@@ -46,10 +46,11 @@ class ProjectShowcase extends HTMLElement {
             if (error) throw error;
 
             if (projects && projects.length > 0) {
-                const dataChanged = JSON.stringify(this.allProjects) !== JSON.stringify(projects);
-                this.allProjects = projects;
+                const activeProjects = projects.filter(p => p.is_archive !== true);
+                const dataChanged = JSON.stringify(this.allProjects) !== JSON.stringify(activeProjects);
+                this.allProjects = activeProjects;
                 try {
-                    localStorage.setItem('portfolio_projects', JSON.stringify(projects));
+                    localStorage.setItem('portfolio_projects', JSON.stringify(activeProjects));
                 } catch (e) {}
                 
                 if (dataChanged) {
@@ -86,7 +87,8 @@ class ProjectShowcase extends HTMLElement {
         const pathPrefix = this.getPathPrefix();
         try {
             const response = await fetch(`${pathPrefix}data/projects.json`);
-            this.allProjects = await response.json();
+            const projects = await response.json();
+            this.allProjects = projects.filter(p => p.is_archive !== true);
             this.render();
         } catch (e) {
             this.innerHTML = `<p style="padding: 24px; text-align: center; color: var(--text-muted);">Error loading projects. Please check console for details.</p>`;
@@ -355,8 +357,10 @@ class ProjectShowcase extends HTMLElement {
             </div>
         `;
 
-        const projectCards = displayProjects.map((project, index) => `
-            <div class="slider-card" data-index="${index}" data-link="${pathPrefix}${project.link}">
+        const projectCards = displayProjects.map((project, index) => {
+            const projectLink = `projects/project-detail.html?id=${project.id}`;
+            return `
+            <div class="slider-card" data-index="${index}" data-link="${pathPrefix}${projectLink}">
                 <div class="slider-card-content">
                     <div class="slider-card-image-wrap">
                         <img src="${project.image.startsWith('http') ? project.image : pathPrefix + project.image}" alt="${project.title}" class="slider-card-img" draggable="false">
@@ -371,7 +375,7 @@ class ProjectShowcase extends HTMLElement {
                             <div class="project-tech">
                                 ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
                             </div>
-                            <a href="${pathPrefix}${project.link}" class="project-case-study-link">
+                            <a href="${pathPrefix}${projectLink}" class="project-case-study-link">
                                 View Case Study
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
@@ -379,7 +383,8 @@ class ProjectShowcase extends HTMLElement {
                     </div>
                 </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
 
         const dotIndicators = Array(this.originalProjectsLength).fill(0).map((_, idx) => `
             <div class="slider-dot" data-idx="${idx}" onclick="document.querySelector('project-showcase').setIndex(${idx})"></div>
