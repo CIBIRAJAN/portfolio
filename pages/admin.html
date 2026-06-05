@@ -333,6 +333,26 @@
             object-fit: cover;
         }
         
+        .image-preview-svg {
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 12px;
+            border: 1px solid rgba(30, 77, 18, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            background: rgba(30, 77, 18, 0.03);
+        }
+        
+        .image-preview-svg svg {
+            width: 100%;
+            height: 100%;
+            max-width: 80px;
+            max-height: 80px;
+            color: var(--accent-lime);
+        }
+        
         .file-upload-wrapper {
             display: flex;
             gap: 12px;
@@ -513,14 +533,14 @@
             },
             milestones: {
                 title: 'Milestones',
-                storagePath: '',
+                storagePath: 'milestones',
                 fields: [
                     { name: 'year', label: 'Year (e.g., 2021)', type: 'text' },
                     { name: 'year_subtitle', label: 'Year Subtitle (e.g., The Beginning)', type: 'text' },
                     { name: 'heading', label: 'Milestone Title (e.g., Foundation & First Lines)', type: 'text' },
                     { name: 'description', label: 'Description', type: 'textarea' },
-                    { name: 'icon_svg', label: 'Icon SVG Code (Custom SVG paths/markup)', type: 'textarea' },
-                    { name: 'illustration_svg', label: 'Illustration SVG Code (Custom SVG paths/markup)', type: 'textarea' },
+                    { name: 'icon_svg', label: 'Icon (SVG or Image File)', type: 'image' },
+                    { name: 'illustration_svg', label: 'Illustration (SVG or Image File)', type: 'image' },
                     { name: 'sort_order', label: 'Sort Order (Chronological number)', type: 'number' }
                 ]
             }
@@ -604,11 +624,23 @@
                 
                 if (field.type === 'image' || field.type === 'file') {
                     const acceptAttr = field.type === 'image' ? 'accept="image/*"' : 'accept="application/pdf"';
-                    const previewHtml = field.type === 'image' 
-                        ? `<img id="preview-${field.name}" src="${val || ''}" class="image-preview" style="${val ? 'display:block;' : ''}">`
-                        : `<div id="preview-file-link-${field.name}" class="file-link-preview" style="${val ? 'display:flex;' : 'display:none;'}">
+                    let previewHtml = '';
+                    if (field.type === 'image') {
+                        if (val && val.trim().startsWith('<svg')) {
+                            previewHtml = `
+                                <div id="preview-container-${field.name}" class="image-preview-svg">
+                                    ${val}
+                                </div>
+                                <img id="preview-${field.name}" src="" class="image-preview" style="display:none;">
+                            `;
+                        } else {
+                            previewHtml = `<img id="preview-${field.name}" src="${val || ''}" class="image-preview" style="${val ? 'display:block;' : ''}">`;
+                        }
+                    } else {
+                        previewHtml = `<div id="preview-file-link-${field.name}" class="file-link-preview" style="${val ? 'display:flex;' : 'display:none;'}">
                              📄 <a href="${val || '#'}" target="_blank" id="link-${field.name}" style="color: var(--accent-lime); font-weight: 600; text-decoration: none;">${val ? val.split('/').pop() : ''}</a>
                            </div>`;
+                    }
                     return `
                         <div class="form-group">
                             <label>${field.label}</label>
@@ -652,6 +684,9 @@
                 const file = input.files[0];
                 if (type === 'image') {
                     const preview = document.getElementById(`preview-${fieldName}`);
+                    const svgPreview = document.getElementById(`preview-container-${fieldName}`);
+                    if (svgPreview) svgPreview.style.display = 'none';
+                    
                     const reader = new FileReader();
                     reader.onload = (e) => {
                         preview.src = e.target.result;

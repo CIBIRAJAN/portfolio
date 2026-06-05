@@ -961,12 +961,20 @@
                 const grid = document.querySelector('.id-timeline-grid');
                 if (!grid) return;
                 
+                const renderSvgOrImg = (content, className = '', defaultContent = '') => {
+                    if (!content || !content.trim()) return defaultContent;
+                    if (content.trim().startsWith('<svg') || content.trim().startsWith('<div')) {
+                        return content;
+                    }
+                    return `<img src="${content}" class="${className}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+                };
+                
                 grid.innerHTML = milestones.map(item => {
                     const defaultIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
                     const defaultIllustration = `<svg class="illustration-svg" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="75" cy="50" r="35" fill="rgba(63, 143, 45, 0.06)" /><rect x="35" y="25" width="80" height="50" rx="6" stroke="#3F8F2D" stroke-width="2" fill="rgba(255, 255, 255, 0.6)" /><path d="M50 42 L65 57 L100 32" stroke="#3F8F2D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
                     
-                    const icon = item.icon_svg && item.icon_svg.trim() ? item.icon_svg : defaultIcon;
-                    const illustration = item.illustration_svg && item.illustration_svg.trim() ? item.illustration_svg : defaultIllustration;
+                    const iconContent = renderSvgOrImg(item.icon_svg, 'icon-img', defaultIcon);
+                    const illustrationContent = renderSvgOrImg(item.illustration_svg, 'illustration-svg', defaultIllustration);
                     
                     return `
                     <div class="id-timeline-item">
@@ -977,7 +985,7 @@
                         </div>
                         <div class="id-timeline-node">
                             <div class="id-node-circle">
-                                ${icon}
+                                ${iconContent}
                             </div>
                         </div>
                         <div class="id-timeline-card">
@@ -986,12 +994,35 @@
                                 <p>${item.description}</p>
                             </div>
                             <div class="id-card-illustration">
-                                ${illustration}
+                                ${illustrationContent}
                             </div>
                         </div>
                     </div>
                     `;
                 }).join('');
+
+                // After grid rendering, inline SVG images to allow CSS styling/color changes
+                setTimeout(() => {
+                    document.querySelectorAll('.id-node-circle img[src$=".svg"], .id-card-illustration img[src$=".svg"]').forEach(async img => {
+                        try {
+                            const res = await fetch(img.src);
+                            if (res.ok) {
+                                const text = await res.text();
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(text, 'image/svg+xml');
+                                const svg = doc.querySelector('svg');
+                                if (svg) {
+                                    // Copy attributes
+                                    svg.setAttribute('class', img.className);
+                                    svg.setAttribute('style', img.getAttribute('style') || '');
+                                    img.replaceWith(svg);
+                                }
+                            }
+                        } catch (e) {
+                            console.warn('Failed to inline SVG:', e);
+                        }
+                    });
+                }, 100);
             };
 
             try {
