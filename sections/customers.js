@@ -42,7 +42,7 @@ class CustomerReviews extends HTMLElement {
 
             if (error) throw error;
             
-            if (remoteReviews && remoteReviews.length > 0) {
+            if (remoteReviews) {
                 const dataChanged = JSON.stringify(reviews) !== JSON.stringify(remoteReviews);
                 if (dataChanged) {
                     this.render(remoteReviews);
@@ -119,6 +119,10 @@ class CustomerReviews extends HTMLElement {
     }
 
     render(reviews) {
+        if (!reviews || reviews.length === 0) {
+            this.innerHTML = '';
+            return;
+        }
         const pathPrefix = this.getPathPrefix ? this.getPathPrefix() : '';
         const getGlassProps = (bgClass) => {
             if (bgClass === 'bg-lime') {
