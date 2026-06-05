@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,73 +8,268 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/project-style.css">
 </head>
+
 <body class="project-page-active">
     <global-nav></global-nav>
     <a href="../index.html#projects" class="project-back-pill">&larr; WORK</a>
+
+    <!-- Cinematic Hero Section -->
     <header class="project-hero-modern">
         <div class="project-hero-content">
-            <div class="project-label-tag">PRODUCTION CASE STUDY</div>
-            <h1 class="project-display-title">AgentGo — Insurance CRM</h1>
+            <div class="project-label-tag">● PRODUCTION CASE STUDY</div>
+            <h1 class="project-display-title">AgentGo — <br><span style="color: var(--accent-lime);">Insurance CRM</span></h1>
+            <p class="project-hero-subtitle">A specialized CRM platform built for insurance agents to streamline client management, policy tracking, and team collaboration — all in one place.</p>
             <div class="project-tech-pills">
-                <span class="tech-pill-modern">Sales Tech</span>
-                <span class="tech-pill-modern">Flutter</span>
-                <span class="tech-pill-modern">Supabase</span>
-                <span class="tech-pill-modern">CRM Integration</span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/flutter/025b96" style="width: 14px; height: 14px; object-fit: contain;" alt="Flutter">
+                    Flutter
+                </span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/supabase/3FCF8E" style="width: 14px; height: 14px; object-fit: contain;" alt="Supabase">
+                    Supabase
+                </span>
+                <span class="tech-pill-modern">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#3F8F2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Agent Networking
+                </span>
             </div>
         </div>
-        <div class="project-main-showcase">
-            <img src="../assets/images/projects/agentgo-project.png" alt="AgentGo CRM" class="project-showcase-img">
+        <div class="project-hero-right">
+            <div class="project-main-showcase" style="max-width: 450px; border-radius: 80px; border: none; box-shadow: 0 30px 60px rgba(30, 77, 18, 0.15);">
+                <img src="../assets/images/projects/agentgo-project.png" alt="AgentGo CRM" class="project-showcase-img" style="border-radius: 80px;">
+            </div>
         </div>
     </header>
 
-    <main class="project-grid">
-        <aside class="project-sidebar">
-            <div class="project-sidebar-item">
+    <!-- Horizontal Summary Bar -->
+    <section class="project-summary-bar">
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>CORE FOCUS</h4>
                 <p>Enterprise-grade CRM for Insurance Agents.</p>
             </div>
-            <div class="project-sidebar-item">
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>MISSION</h4>
                 <p>To streamline client management and networking for high-performance sales teams.</p>
             </div>
-            <div class="project-sidebar-item">
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5"/><path d="M12 12l9-9-3 12-6 3-3-3-3-6 6-3 9 9"/><path d="M9 15l3 3"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>DELIVERY</h4>
                 <p>Client Tracking → Real-time Notifications → Commission Dashboards.</p>
             </div>
-        </aside>
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/>
+                </svg>
+            </div>
+            <div class="summary-text">
+                <h4>TECH STACK</h4>
+                <p>Flutter • Supabase • Dart • Edge Functions</p>
+            </div>
+        </div>
+    </section>
 
-        <article class="project-content">
-            <section>
+    <!-- Two-Column Main Content Layout -->
+    <main class="project-main-grid">
+        <div class="main-column-left">
+            <div class="content-card card-overview">
                 <h2>🚀 Overview</h2>
                 <p>AgentGo is a specialized CRM platform built to handle the complex workflows of insurance agents. It provides a unified portal for tracking client lifecycles, managing policy renewals, and coordinating with other agents in a network.</p>
-            </section>
+                <div class="overview-illustration" style="margin-top: 32px;">
+                    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="220" rx="24" fill="#ECF5E6" opacity="0.5"/>
+                        <circle cx="340" cy="80" r="80" fill="none" stroke="rgba(63, 143, 45, 0.08)" stroke-width="2"/>
+                        <circle cx="340" cy="80" r="120" fill="none" stroke="rgba(63, 143, 45, 0.04)" stroke-width="2"/>
+                        <rect x="50" y="40" width="260" height="140" rx="16" fill="#ffffff" stroke="rgba(0,0,0,0.02)" stroke-width="2" filter="drop-shadow(0 15px 35px rgba(30, 77, 18, 0.05))"/>
+                        <circle cx="70" cy="56" r="4" fill="#E15A5A"/>
+                        <circle cx="80" cy="56" r="4" fill="#E8B03E"/>
+                        <circle cx="90" cy="56" r="4" fill="#60C14D"/>
+                        <rect x="62" y="70" width="20" height="96" rx="4" fill="#f4f8ef"/>
+                        <circle cx="72" cy="82" r="3" fill="#3F8F2D" opacity="0.5"/>
+                        <circle cx="72" cy="98" r="3" fill="#3F8F2D" opacity="0.3"/>
+                        <circle cx="72" cy="114" r="3" fill="#3F8F2D" opacity="0.3"/>
+                        <circle cx="72" cy="130" r="3" fill="#3F8F2D" opacity="0.3"/>
+                        <circle cx="72" cy="146" r="3" fill="#3F8F2D" opacity="0.3"/>
+                        <rect x="94" y="70" width="50" height="36" rx="6" fill="#f8fafc" stroke="rgba(63, 143, 45, 0.1)"/>
+                        <rect x="102" y="76" width="30" height="5" rx="2" fill="#3F8F2D" opacity="0.3"/>
+                        <rect x="102" y="86" width="20" height="8" rx="2" fill="#3F8F2D" opacity="0.8"/>
+                        <rect x="150" y="70" width="50" height="36" rx="6" fill="#f8fafc" stroke="rgba(63, 143, 45, 0.1)"/>
+                        <rect x="158" y="76" width="30" height="5" rx="2" fill="#3F8F2D" opacity="0.3"/>
+                        <rect x="158" y="86" width="24" height="8" rx="2" fill="#69B63D" opacity="0.8"/>
+                        <rect x="94" y="114" width="200" height="52" rx="8" fill="#f8fafc" stroke="rgba(0,0,0,0.02)"/>
+                        <path d="M102 150 C120 145, 130 125, 150 135 C170 145, 180 120, 200 130 C220 140, 230 125, 250 120 C270 115, 280 135, 290 125" fill="none" stroke="#3F8F2D" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="250" cy="120" r="4" fill="#3F8F2D"/>
+                        <g filter="drop-shadow(0 8px 20px rgba(30, 77, 18, 0.08))">
+                            <rect x="25" y="120" width="48" height="48" rx="24" fill="#ffffff"/>
+                            <circle cx="49" cy="144" r="16" fill="#ECF5E6"/>
+                            <path d="M49 144 a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="#3F8F2D"/>
+                            <path d="M43 149 a6 6 0 0 1 12 0" fill="#3F8F2D"/>
+                        </g>
+                        <g filter="drop-shadow(0 10px 25px rgba(30, 77, 18, 0.1))">
+                            <rect x="280" y="120" width="48" height="48" rx="24" fill="#3F8F2D"/>
+                            <path d="M294 144 L299 149 L312 136" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
 
-            <section>
-                <h2>⚙️ Key Features</h2>
-                <ul class="feature-list">
-                    <li class="feature-item"><strong>Advanced Client Lifecycle:</strong> Deep tracking of leads, active policies, and renewals.</li>
-                    <li class="feature-item"><strong>Secure Data Handling:</strong> Built on Supabase for enterprise-grade security and reliability.</li>
-                    <li class="feature-item"><strong>Networking Tools:</strong> Integrated features for agents to collaborate on complex claims or projects.</li>
-                    <li class="feature-item"><strong>Real-time Notifications:</strong> Immediate alerts for task deadlines and client updates.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>💰 Commission Tracking</h2>
+            <div class="content-card card-commission">
+                <h2>📈 Commission Tracking</h2>
                 <p>Custom-built logic to calculate and visualize commissions, giving agents a transparent view of their performance and earnings in real-time.</p>
-            </section>
+                <div class="impact-stats" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="stat-col">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: 800; font-size: 1.1rem;">$</div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">$24.5K</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Total Earnings</p>
+                    </div>
+                    <div class="stat-col">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">18.6%</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Growth Rate</p>
+                    </div>
+                    <div class="stat-col">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">32</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Active Policies</p>
+                    </div>
+                    <div class="stat-col" style="border-right: none;">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">128</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Active Clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <section>
-                <h2>🌍 Scalability</h2>
+        <div class="main-column-right">
+            <div class="content-card card-features">
+                <h2>⚙️ Key Features</h2>
+                <div class="features-list-wrapper">
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Advanced Client Lifecycle</strong>
+                            <p>Deep tracking of leads, active policies, and renewals.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Secure Data Handling</strong>
+                            <p>Built on Supabase for enterprise-grade security and reliability.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Networking Tools</strong>
+                            <p>Integrated features for agents to collaborate on complex claims or projects.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Real-time Notifications</strong>
+                            <p>Immediate alerts for task deadlines and client updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card card-scalability">
+                <h2>🌐 Scalability</h2>
                 <p>Designed with a focus on high-performance mobile interactions and a backend capable of supporting thousands of concurrent users across distributed territories.</p>
-            </section>
-        </article>
+                <div class="impact-stats" style="margin-top: 32px;">
+                    <div class="stat-col">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">10K+</h3>
+                        <p>Concurrent Users</p>
+                    </div>
+                    <div class="stat-col">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">99.9%</h3>
+                        <p>Uptime</p>
+                    </div>
+                    <div class="stat-col" style="border-right: none;">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">Global</h3>
+                        <p>Agent Network</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <!-- Bottom Banner CTA -->
+    <section class="project-bottom-cta">
+        <div class="bottom-cta-card">
+            <div class="cta-left">
+                <div class="cta-leaves-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 10 17 10" />
+                        <path d="M9 22a7 7 0 0 0 7.8-13.9C11.5 9 10 14 10 14" />
+                    </svg>
+                </div>
+                <p>Building solutions that are accessible, scalable, and built for real-world impact.</p>
+            </div>
+            <a href="../index.html#projects" class="btn-view-more">
+                View More Projects
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
     <global-footer></global-footer>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../scripts/project-dynamic.js" defer></script><script src="../scripts/glass-surface.js" defer></script><script src="../components/nav.js" defer></script><script src="../components/footer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../scripts/project-dynamic.js" defer></script>
+    <script src="../scripts/glass-surface.js" defer></script>
+    <script src="../components/nav.js" defer></script>
+    <script src="../components/footer.js" defer></script>
 </body>
+
 </html>
