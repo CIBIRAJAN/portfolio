@@ -678,9 +678,7 @@ body.hero-active .nav-logo-text {
     display: none;
 }
 
-.mobile-hire-arrow {
-    display: none;
-}
+
 
 .persona-showcase {
     display: flex;
@@ -2885,18 +2883,7 @@ body.hero-active .nav-logo-text {
         height: 100% !important;
     }
 
-    .mobile-hire-arrow {
-        display: block !important;
-        position: absolute !important;
-        top: 25% !important;
-        right: 18vw !important;
-        width: 65px !important;
-        height: 78px !important;
-        color: #12330a !important; /* Premium dark green contrast */
-        z-index: 100 !important;
-        pointer-events: none !important;
-        transform: rotate(-10deg) !important;
-    }
+
 
     .hero-visual-container {
         position: absolute !important;
