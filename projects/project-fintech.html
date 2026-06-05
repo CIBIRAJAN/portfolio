@@ -9,91 +9,270 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/project-style.css">
 </head>
 
 <body class="project-page-active">
-    <!-- Shared Global Nav -->
     <global-nav></global-nav>
-
     <a href="../index.html#projects" class="project-back-pill">&larr; WORK</a>
-    <!-- Project Cinematic Header -->
+
+    <!-- Cinematic Hero Section -->
     <header class="project-hero-modern">
         <div class="project-hero-content">
-            <div class="project-label-tag">PRODUCTION CASE STUDY</div>
-            <h1 class="project-display-title">Financial Management Ecosystem</h1>
+            <div class="project-label-tag">● PRODUCTION CASE STUDY</div>
+            <h1 class="project-display-title">Fintech — <br><span style="color: var(--accent-lime);">Management Ecosystem</span></h1>
+            <p class="project-hero-subtitle">A gamified personal finance tracker enabling multi-user wallet collaboration, real-time budgeting, and predictive insights.</p>
             <div class="project-tech-pills">
-                <span class="tech-pill-modern">FinTech</span>
-                <span class="tech-pill-modern">Flutter</span>
-                <span class="tech-pill-modern">Supabase</span>
-                <span class="tech-pill-modern">Stripe</span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/flutter/025b96" style="width: 14px; height: 14px; object-fit: contain;" alt="Flutter">
+                    Flutter
+                </span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/supabase/3FCF8E" style="width: 14px; height: 14px; object-fit: contain;" alt="Supabase">
+                    Supabase
+                </span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/stripe/635BFF" style="width: 14px; height: 14px; object-fit: contain;" alt="Stripe">
+                    Stripe
+                </span>
+                <span class="tech-pill-modern">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#3F8F2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline-block;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    FinTech
+                </span>
             </div>
         </div>
-
-        <div class="project-main-showcase">
-            <img src="../assets/images/projects/agentgo-project.png" alt="Financial Tracking System Analysis"
-                class="project-showcase-img">
+        <div class="project-hero-right">
+            <div class="project-main-showcase" style="max-width: 450px; border-radius: 80px; border: none; box-shadow: 0 30px 60px rgba(30, 77, 18, 0.15);">
+                <img src="../assets/images/projects/agentgo-project.png" alt="Financial Tracking System Analysis" class="project-showcase-img" style="border-radius: 80px;">
+            </div>
         </div>
     </header>
 
-    <main class="project-grid">
-        <aside class="project-sidebar">
-            <div class="project-sidebar-item">
+    <!-- Horizontal Summary Bar -->
+    <section class="project-summary-bar">
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>CORE FOCUS</h4>
                 <p>Complete Money Tracking & Shared Financial Management.</p>
             </div>
-            <div class="project-sidebar-item">
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>MISSION</h4>
                 <p>To help users manage their resources effectively with a gamified, multi-user experience.</p>
             </div>
-            <div class="project-sidebar-item">
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5"/><path d="M12 12l9-9-3 12-6 3-3-3-3-6 6-3 9 9"/><path d="M9 15l3 3"/>
+                </svg>
+            </div>
+            <div class="summary-text">
                 <h4>DELIVERY</h4>
                 <p>Unified Wallet → Shared Collaboration → Real-time Analytics.</p>
             </div>
-        </aside>
+        </div>
+        <div class="summary-item">
+            <div class="summary-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/>
+                </svg>
+            </div>
+            <div class="summary-text">
+                <h4>TECH STACK</h4>
+                <p>Flutter • Supabase • Node.js • Stripe</p>
+            </div>
+        </div>
+    </section>
 
-        <article class="project-content">
-            <section>
+    <!-- Two-Column Main Content Layout -->
+    <main class="project-main-grid">
+        <div class="main-column-left">
+            <div class="content-card card-overview">
                 <h2>🚀 Overview</h2>
-                <p>A complete financial tracking system designed to help users manage their money effectively. It
-                    features advanced monthly insights and a robust architecture for multi-user collaboration.</p>
-            </section>
+                <p>A complete financial tracking system designed to help users manage their money effectively. It features advanced monthly insights, a gamified timeline of savings milestones, and a robust architecture for multi-user collaboration.</p>
+                <div class="overview-illustration" style="margin-top: 32px;">
+                    <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="220" rx="24" fill="#ECF5E6" opacity="0.5"/>
+                        <circle cx="340" cy="80" r="80" fill="none" stroke="rgba(63, 143, 45, 0.08)" stroke-width="2"/>
+                        
+                        <rect x="50" y="40" width="260" height="140" rx="16" fill="#ffffff" stroke="rgba(0,0,0,0.02)" stroke-width="2" filter="drop-shadow(0 15px 35px rgba(30, 77, 18, 0.05))"/>
+                        
+                        <circle cx="70" cy="56" r="4" fill="#E15A5A"/>
+                        <circle cx="80" cy="56" r="4" fill="#E8B03E"/>
+                        <circle cx="90" cy="56" r="4" fill="#60C14D"/>
+                        
+                        <!-- Pie / progress wheel -->
+                        <circle cx="130" cy="110" r="40" fill="none" stroke="#ECF5E6" stroke-width="8"/>
+                        <circle cx="130" cy="110" r="40" fill="none" stroke="#3F8F2D" stroke-width="8" stroke-dasharray="180 250" stroke-linecap="round"/>
+                        
+                        <!-- Transaction Lines representation -->
+                        <rect x="200" y="80" width="90" height="8" rx="4" fill="#69B63D" opacity="0.8"/>
+                        <rect x="200" y="95" width="70" height="8" rx="4" fill="#3F8F2D" opacity="0.3"/>
+                        <rect x="200" y="110" width="80" height="8" rx="4" fill="#3F8F2D" opacity="0.3"/>
+                        
+                        <!-- Float wallet popup card -->
+                        <g filter="drop-shadow(0 8px 20px rgba(30, 77, 18, 0.08))">
+                            <rect x="220" y="130" width="80" height="36" rx="6" fill="#ffffff"/>
+                            <text x="228" y="146" fill="#1E4D12" font-family="Inter" font-weight="800" font-size="10">$1,450.00</text>
+                            <text x="228" y="156" fill="#888" font-family="Inter" font-weight="500" font-size="6">Balance</text>
+                        </g>
 
-            <section>
-                <h2>⚙️ Key Features</h2>
-                <ul class="feature-list">
-                    <li class="feature-item"><strong>Income & Expense Tracking:</strong> Detailed budget management.
-                    </li>
-                    <li class="feature-item"><strong>Multiple Shared Wallets:</strong> Collaborative financial
-                        management for teams or families.</li>
-                    <li class="feature-item"><strong>Gamified Experience:</strong> Earn points, badges, and rewards
-                        based on financial habits.</li>
-                    <li class="feature-item"><strong>Monthly Insights:</strong> Clear analytics for better financial
-                        decisions.</li>
-                </ul>
-            </section>
+                        <g filter="drop-shadow(0 6px 12px rgba(0,0,0,0.05))">
+                            <circle cx="80" cy="140" r="16" fill="#3F8F2D"/>
+                            <path d="M74 140 H86 M80 134 V146" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
 
-            <section>
-                <h2>📈 Advanced Visualization</h2>
-                <ul class="feature-list">
-                    <li class="feature-item">Dynamic bar charts for income and expense tracking.</li>
-                    <li class="feature-item">Smart tooltips with precise interaction.</li>
-                    <li class="feature-item">Clean, responsive UI with custom animations.</li>
-                </ul>
-            </section>
-
-            <section>
+            <div class="content-card card-security">
                 <h2>🔐 Security & Auth</h2>
-                <p>Built with enterprise-grade security including email/password and social login integration, secure
-                    data storage, and session handling.</p>
-            </section>
-        </article>
+                <p>Built with enterprise-grade security including email/password and social login integration, secure data storage, and tokenized session handling through Supabase.</p>
+                <div class="impact-stats" style="grid-template-columns: repeat(4, 1fr); margin-top: 32px;">
+                    <div class="stat-col">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">256-bit</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Encryption</p>
+                    </div>
+                    <div class="stat-col">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">2-Sec</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Sync Time</p>
+                    </div>
+                    <div class="stat-col">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">10K+</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Transactions</p>
+                    </div>
+                    <div class="stat-col" style="border-right: none;">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">99.9%</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-column-right">
+            <div class="content-card card-features">
+                <h2>⚙️ Key Features</h2>
+                <div class="features-list-wrapper">
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Income & Expense Tracking</strong>
+                            <p>Detailed budget management and custom categorizations.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Multiple Shared Wallets</strong>
+                            <p>Collaborative financial management for teams or families.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Gamified Experience</strong>
+                            <p>Earn points, badges, and rewards based on financial habits.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item-row">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text-box">
+                            <strong>Monthly Insights</strong>
+                            <p>Clear analytics for better long-term financial decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card card-scalability">
+                <h2>📈 Advanced Visualization</h2>
+                <p>Designed with dynamic bar charts for income and expense tracking, using smart touch tooltips for interactive data inspection and micro-animations to enhance user engagement within a lightweight mobile application container.</p>
+                <div class="impact-stats" style="margin-top: 32px;">
+                    <div class="stat-col">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">Flutter</h3>
+                        <p>Mobile Frontend</p>
+                    </div>
+                    <div class="stat-col">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">Supabase</h3>
+                        <p>Realtime DB</p>
+                    </div>
+                    <div class="stat-col" style="border-right: none;">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">Stripe</h3>
+                        <p>Settlements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <!-- Bottom Banner CTA -->
+    <section class="project-bottom-cta">
+        <div class="bottom-cta-card">
+            <div class="cta-left">
+                <div class="cta-leaves-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 10 17 10" />
+                        <path d="M9 22a7 7 0 0 0 7.8-13.9C11.5 9 10 14 10 14" />
+                    </svg>
+                </div>
+                <p>Building solutions that are accessible, scalable, and built for real-world impact.</p>
+            </div>
+            <a href="../index.html#projects" class="btn-view-more">
+                View More Projects
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
     <global-footer></global-footer>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../scripts/project-dynamic.js" defer></script><script src="../scripts/glass-surface.js" defer></script><script src="../components/nav.js" defer></script><script src="../components/footer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../scripts/project-dynamic.js" defer></script>
+    <script src="../scripts/glass-surface.js" defer></script>
+    <script src="../components/nav.js" defer></script>
+    <script src="../components/footer.js" defer></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;700;900&family=Satisfy&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/project-style.css">
@@ -19,20 +19,34 @@
     <global-nav></global-nav>
     <a href="../index.html#projects" class="project-back-pill">&larr; WORK</a>
 
+    <!-- Cinematic Hero Section -->
     <header class="project-hero-modern">
         <div class="project-hero-content">
             <div class="project-label-tag">● PRODUCTION CASE STUDY</div>
-            <h1 class="project-display-title">No-App Transport Booking</h1>
+            <h1 class="project-display-title">No-App Transport — <br><span style="color: var(--accent-lime);">Booking Platform</span></h1>
             <p class="project-hero-subtitle">A high-performance web-first transport booking system that works seamlessly on all devices without requiring any app installation.</p>
             <div class="project-tech-pills">
-                <span class="tech-pill-modern"><span class="pill-icon">🌐</span> Web-First</span>
-                <span class="tech-pill-modern"><span class="pill-icon">⚡</span> Real-time Allocation</span>
-                <span class="tech-pill-modern"><span class="pill-icon">✨</span> UX Optimization</span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/react/61DAFB" style="width: 14px; height: 14px; object-fit: contain;" alt="React">
+                    React
+                </span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/socketdotio/010101" style="width: 14px; height: 14px; object-fit: contain;" alt="Socket.io">
+                    WebSockets
+                </span>
+                <span class="tech-pill-modern">
+                    <img src="https://cdn.simpleicons.org/nodedotjs/339933" style="width: 14px; height: 14px; object-fit: contain;" alt="Node.js">
+                    Node.js
+                </span>
+                <span class="tech-pill-modern">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#3F8F2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline-block;"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    Logistics
+                </span>
             </div>
         </div>
         <div class="project-hero-right">
-            <div class="project-main-showcase">
-                <img src="../assets/images/projects/webiz-project.png" alt="Transportation Booking" class="project-showcase-img">
+            <div class="project-main-showcase" style="max-width: 450px; border-radius: 80px; border: none; box-shadow: 0 30px 60px rgba(30, 77, 18, 0.15);">
+                <img src="../assets/images/projects/webiz-project.png" alt="Transportation Booking" class="project-showcase-img" style="border-radius: 80px;">
             </div>
         </div>
     </header>
@@ -64,7 +78,7 @@
         <div class="summary-item">
             <div class="summary-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5"/><path d="M12 12l9-9-3 12-6 3-3-3-3-6 6-3 9 9"/>
+                    <path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5"/><path d="M12 12l9-9-3 12-6 3-3-3-3-6 6-3 9 9"/><path d="M9 15l3 3"/>
                 </svg>
             </div>
             <div class="summary-text">
@@ -75,7 +89,7 @@
         <div class="summary-item">
             <div class="summary-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/>
                 </svg>
             </div>
             <div class="summary-text">
@@ -91,7 +105,7 @@
             <div class="content-card card-overview">
                 <h2>🚀 Overview</h2>
                 <p>This project addresses the friction of high-barrier mobile applications in the transportation sector. By creating a high-performance web-first system, we enable users to book transport instantly without downloading a massive app, saving storage and reducing onboarding time.</p>
-                <div class="overview-illustration">
+                <div class="overview-illustration" style="margin-top: 32px;">
                     <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="400" height="220" rx="24" fill="#ECF5E6" opacity="0.5"/>
                         <circle cx="80" cy="150" r="60" fill="none" stroke="rgba(101, 163, 13, 0.1)" stroke-width="2"/>
@@ -126,18 +140,27 @@
             <div class="content-card card-impact">
                 <h2>🌐 Scalability & Impact</h2>
                 <p>By removing the mobile app requirement, we reached segments of the population previously underserved by digital ride-hailing services, significantly increasing booking volume in diverse urban environments.</p>
-                <div class="impact-stats">
+                <div class="impact-stats" style="grid-template-columns: repeat(3, 1fr); margin-top: 32px;">
                     <div class="stat-col">
-                        <h3>3X</h3>
-                        <p>Increase in Bookings</p>
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">3X</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Increase in Bookings</p>
                     </div>
                     <div class="stat-col">
-                        <h3>60%+</h3>
-                        <p>Faster Onboarding</p>
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">60%</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Faster Onboarding</p>
                     </div>
-                    <div class="stat-col">
-                        <h3>40%</h3>
-                        <p>Reduction in Drop-offs</p>
+                    <div class="stat-col" style="border-right: none;">
+                        <div style="background: rgba(63, 143, 45, 0.08); color: var(--accent-lime); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; color: #1E4D12; margin-bottom: 4px;">40%</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Reduction in Drop-offs</p>
                     </div>
                 </div>
             </div>
@@ -150,7 +173,7 @@
                     <div class="feature-item-row">
                         <div class="feature-icon-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 18v3h16v-3M4 7h16M4 12h16"/>
+                                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
                             </svg>
                         </div>
                         <div class="feature-text-box">
@@ -161,18 +184,18 @@
                     <div class="feature-item-row">
                         <div class="feature-icon-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                             </svg>
                         </div>
                         <div class="feature-text-box">
                             <strong>Efficient Resource Allocation</strong>
-                            <p>Predictive driver dispatching to ensure minimum wait times.</p>
+                            <p>Predictive driver dispatching to ensure minimum wait times and route efficiency.</p>
                         </div>
                     </div>
                     <div class="feature-item-row">
                         <div class="feature-icon-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><path d="M3 20h18"/>
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                             </svg>
                         </div>
                         <div class="feature-text-box">
@@ -183,36 +206,32 @@
                     <div class="feature-item-row">
                         <div class="feature-icon-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/>
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/>
                             </svg>
                         </div>
                         <div class="feature-text-box">
                             <strong>High Accessibility</strong>
-                            <p>Designed for low-bandwidth environments and legacy device compatibility.</p>
+                            <p>Designed for low-bandwidth environments and legacy mobile device compatibility.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="content-card card-tech">
+            <div class="content-card card-scalability">
                 <h2>🧠 Technology Choice</h2>
                 <p>Utilizes advanced real-time WebSockets and lightweight frontend frameworks to deliver app-like performance within a standard mobile browser environment.</p>
-                <div class="tech-logos-row">
-                    <div class="tech-logo-badge">
-                        <img src="https://cdn.simpleicons.org/socketdotio/65a30d" alt="WebSockets">
-                        <span>WebSockets</span>
+                <div class="impact-stats" style="margin-top: 32px;">
+                    <div class="stat-col">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">WebSockets</h3>
+                        <p>Real-time Sync</p>
                     </div>
-                    <div class="tech-logo-badge">
-                        <img src="https://cdn.simpleicons.org/nodedotjs/65a30d" alt="Node.js">
-                        <span>Node.js</span>
+                    <div class="stat-col">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">Node.js</h3>
+                        <p>Server Engine</p>
                     </div>
-                    <div class="tech-logo-badge">
-                        <img src="https://cdn.simpleicons.org/react/65a30d" alt="React">
-                        <span>React</span>
-                    </div>
-                    <div class="tech-logo-badge">
-                        <img src="https://cdn.simpleicons.org/redis/65a30d" alt="Redis">
-                        <span>Redis</span>
+                    <div class="stat-col" style="border-right: none;">
+                        <h3 style="color: var(--accent-lime); font-weight: 900; font-size: 2rem;">React</h3>
+                        <p>Client App</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +258,11 @@
     </section>
 
     <global-footer></global-footer>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../scripts/project-dynamic.js" defer></script><script src="../scripts/glass-surface.js" defer></script><script src="../components/nav.js" defer></script><script src="../components/footer.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../scripts/project-dynamic.js" defer></script>
+    <script src="../scripts/glass-surface.js" defer></script>
+    <script src="../components/nav.js" defer></script>
+    <script src="../components/footer.js" defer></script>
 </body>
 
 </html>
