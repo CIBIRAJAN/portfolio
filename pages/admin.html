@@ -601,7 +601,7 @@
                         <p class="card-subtitle">${sub}</p>
                         ${currentTable === 'resumes' && item.version ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Version: ${item.version}</div>` : ''}
                         ${currentTable === 'resumes' && item.is_live ? `<div style="display: inline-block; align-self: flex-start; background: rgba(63,143,45,0.15); color: var(--accent-lime); font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Live</div>` : ''}
-                        ${currentTable === 'projects' && item.is_archive ? `<div style="display: inline-block; align-self: flex-start; background: rgba(217,56,56,0.15); color: #d93838; font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Archived</div>` : ''}
+                        ${item.is_archive ? `<div style="display: inline-block; align-self: flex-start; background: rgba(217,56,56,0.15); color: #d93838; font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">Archived</div>` : ''}
                         ${currentTable === 'milestones' ? `<div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px;">Subtitle: ${item.year_subtitle} | Order: ${item.sort_order}</div>` : ''}
                     </div>
                     <div class="card-actions">
