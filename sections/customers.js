@@ -37,6 +37,7 @@ class CustomerReviews extends HTMLElement {
             const { data: remoteReviews, error } = await this.supabase
                 .from('customers')
                 .select('*')
+                .eq('is_archive', false)
                 .order('created_at', { ascending: true });
 
             if (error) throw error;
