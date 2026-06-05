@@ -147,6 +147,12 @@ class HomeHero extends HTMLElement {
                 <div class="persona-zone persona-center persona-identity" data-target="journey" data-persona="identity">
                     <div class="persona-image-wrap">
                         <img src="${getImg('hero_center')}" alt="Identity Persona" class="persona-img" draggable="false">
+                        <div class="mobile-hire-arrow">
+                            <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M70 10 C70 80 50 110 10 110" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+                                <path d="M22 100L10 110L22 120" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
