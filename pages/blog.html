@@ -165,6 +165,7 @@
                 const { data: posts, error } = await supabase
                     .from('blog_posts')
                     .select('*')
+                    .eq('is_archive', false)
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
