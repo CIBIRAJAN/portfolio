@@ -167,7 +167,15 @@
     <script>
         const SUPABASE_URL = 'https://kfcqfaqkxbsvjatzjxfd.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        let supabase = null;
+        try {
+            if (window.supabase) {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            }
+        } catch (err) {
+            console.warn('Failed to initialize Supabase client:', err);
+        }
 
         // Icon SVG map
         const icons = {
@@ -223,23 +231,25 @@
             let project = null;
 
             // 1. Try fetching from Supabase
-            try {
-                // Check if id is a UUID, otherwise it's a slug
-                const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-                let query = supabase.from('projects').select('*');
-                if (isUuid) {
-                    query = query.eq('id', id);
-                } else {
-                    // Fallback to match by link ending (e.g. project-fintech.html)
-                    query = query.like('link', `%${id}%`);
+            if (supabase) {
+                try {
+                    // Check if id is a UUID, otherwise it's a slug
+                    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+                    let query = supabase.from('projects').select('*');
+                    if (isUuid) {
+                        query = query.eq('id', id);
+                    } else {
+                        // Fallback to match by link ending (e.g. project-fintech.html)
+                        query = query.like('link', `%${id}%`);
+                    }
+                    
+                    const { data, error } = await query;
+                    if (!error && data && data.length > 0) {
+                        project = data[0];
+                    }
+                } catch (e) {
+                    console.warn('Supabase fetch failed, trying local backup:', e);
                 }
-                
-                const { data, error } = await query;
-                if (!error && data && data.length > 0) {
-                    project = data[0];
-                }
-            } catch (e) {
-                console.warn('Supabase fetch failed, trying local backup:', e);
             }
 
             // 2. Fallback to local projects.json
