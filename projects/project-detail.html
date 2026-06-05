@@ -168,10 +168,10 @@
         const SUPABASE_URL = 'https://kfcqfaqkxbsvjatzjxfd.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmY3FmYXFreGJzdmphdHpqeGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3NDg4ODksImV4cCI6MjA4OTMyNDg4OX0.ReAzLZ_uxSeXoNIIA0oTSnjdvNjP48HxpMA_X6BpXbs';
         
-        let supabase = null;
+        let supabaseClient = null;
         try {
             if (window.supabase) {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             }
         } catch (err) {
             console.warn('Failed to initialize Supabase client:', err);
@@ -231,11 +231,11 @@
             let project = null;
 
             // 1. Try fetching from Supabase
-            if (supabase) {
+            if (supabaseClient) {
                 try {
                     // Check if id is a UUID, otherwise it's a slug
                     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-                    let query = supabase.from('projects').select('*');
+                    let query = supabaseClient.from('projects').select('*');
                     if (isUuid) {
                         query = query.eq('id', id);
                     } else {
